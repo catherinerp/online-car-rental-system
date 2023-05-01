@@ -1,5 +1,6 @@
 [
     {
+        "Car_ID" : "001",
         "Name":"Toyota Corolla",
         "Make":"Toyota",
         "Model":"Corolla",
@@ -14,6 +15,7 @@
         "Image": ""
     },
     {
+        "Car_ID" : "002",
         "Name":"Honda Civic",
         "Make":"Honda",
         "Model":"Civic",
@@ -24,9 +26,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Manual",
         "Seats":"5",
-        "Body_type": "Hatchback"
+        "Body_type": "Hatchback",
+        "Image": ""
     },
     {
+        "Car_ID" : "003",
         "Name":"Ford Mustang",
         "Make":"Ford",
         "Model":"Mustang",
@@ -37,9 +41,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"4",
-        "Body_type": "Coupe"
+        "Body_type": "Coupe",
+        "Image": ""
     },
     {
+        "Car_ID" : "004",
         "Name":"Chevrolet Camaro",
         "Make":"Chevrolet",
         "Model":"Camaro",
@@ -50,9 +56,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"4",
-        "Body_type": "Coupe"
+        "Body_type": "Coupe",
+        "Image": ""
     },
     {
+        "Car_ID" : "005",
         "Name":"Tesla Model S",
         "Make":"Tesla",
         "Model":"Model S",
@@ -63,9 +71,11 @@
         "Fuel":"Electric",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "005",
         "Name":"Nissan Altima",
         "Make":"Nissan",
         "Model":"Altima",
@@ -76,9 +86,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "006",
         "Name":"BMW 3 Series",
         "Make":"BMW",
         "Model":"3 Series",
@@ -89,9 +101,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "007",
         "Name":"Mercedes-Benz C-Class",
         "Make":"Mercedes-Benz",
         "Model":"C-Class",
@@ -102,9 +116,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "008",
         "Name":"Audi A4",
         "Make":"Audi",
         "Model":"A4",
@@ -115,9 +131,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "009",
         "Name":"Jeep Wrangler",
         "Make":"Jeep",
         "Model":"Wrangler",
@@ -128,9 +146,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Manual",
         "Seats":"4",
-        "Body_type": "SUV"
+        "Body_type": "SUV",
+        "Image": ""
     },
     {
+        "Car_ID" : "010",
         "Name":"Toyota Camry",
         "Make":"Toyota",
         "Model":"Camry",
@@ -141,9 +161,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "011",
         "Name":"BMW X5",
         "Make":"BMW",
         "Model":"X5",
@@ -154,9 +176,11 @@
         "Fuel":"Diesel",
         "Transmission_type":"Automatic",
         "Seats":"7",
-        "Body_type": "SUV"
+        "Body_type": "SUV",
+        "Image": ""
     },
     {
+        "Car_ID" : "012",
         "Name":"Tesla Model S",
         "Make":"Tesla",
         "Model":"Model S",
@@ -167,9 +191,11 @@
         "Fuel":"Electric",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Sedan"
+        "Body_type": "Sedan",
+        "Image": ""
     },
     {
+        "Car_ID" : "013",
         "Name":"Ford Mustang",
         "Make":"Ford",
         "Model":"Mustang",
@@ -180,9 +206,11 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"4",
-        "Body_type": "Coupe"
+        "Body_type": "Coupe",
+        "Image": ""
     },
     {
+        "Car_ID" : "014",
         "Name":"Honda Civic",
         "Make":"Honda",
         "Model":"Civic",
@@ -193,6 +221,7 @@
         "Fuel":"Gasoline",
         "Transmission_type":"Automatic",
         "Seats":"5",
-        "Body_type": "Hatchback"
+        "Body_type": "Hatchback",
+        "Image": ""
     }
 ]
