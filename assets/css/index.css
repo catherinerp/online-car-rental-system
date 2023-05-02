@@ -10,6 +10,7 @@
 }
 
 .header-logo {
+    margin: 20px;
     height: 15vh;
     float: left;
 }
@@ -37,7 +38,14 @@
 
 /** browseCars css**/
 
+.main-container {
+    background-color: #f0f0f0f0;
+    max-width: 1200px;
+    padding: 20px;
+}
+
 .car-grid {
+    background-color: #eeeeee;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -47,15 +55,63 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 10px;
+    margin: 20px 50px;
 }
 
 .car {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     padding: 10px;
     margin-right: 10px;
     flex-basis: 30%;
+    min-width: 300px;
+    max-width: 30%;
+    text-align: center;
+}
+
+.car-view {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-right: 10px;
+    flex-basis: 30%;
+    min-width: 300px;
     max-width: 30%;
 }
+
+.car-name, .car-price {
+    font-size: 20px;
+}
+
+.car-name {
+    font-weight: 500;
+}
+
+.car-bodytype {
+    font-weight: 300;
+}
+
+.car-price {
+    font-weight: 600;
+}
+.add-cart-btn {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 8px;
+}
+
+.add-cart-btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
