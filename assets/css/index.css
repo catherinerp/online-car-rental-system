@@ -34,3 +34,28 @@
     border: none;
     background-color: inherit;
 }
+
+/** browseCars css**/
+
+.car-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.car-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.car {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-right: 10px;
+    flex-basis: 30%;
+    max-width: 30%;
+}
