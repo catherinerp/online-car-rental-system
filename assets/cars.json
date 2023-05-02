@@ -12,7 +12,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Hatchback",
-        "Image": "images/car_images/toyota_corolla_2018.png"
+        "Image": "toyota_corolla_2018.png"
     },
     {
         "Car_ID" : "002",
@@ -27,7 +27,7 @@
         "Transmission_type":"Manual",
         "Seats":"5",
         "Body_type": "Hatchback",
-        "Image": "images/car_images/honda_civic_2019.png"
+        "Image": "honda_civic_2019.png"
     },
     {
         "Car_ID" : "003",
@@ -42,7 +42,7 @@
         "Transmission_type":"Automatic",
         "Seats":"4",
         "Body_type": "Coupe",
-        "Image": "images/car_images/ford_mustang_2020.png"
+        "Image": "ford_mustang_2020.png"
     },
     {
         "Car_ID" : "004",
@@ -57,7 +57,7 @@
         "Transmission_type":"Automatic",
         "Seats":"4",
         "Body_type": "Coupe",
-        "Image": "images/car_images/chevrolet_camaro_2017.png"
+        "Image": "chevrolet_camaro_2017.png"
     },
     {
         "Car_ID" : "005",
@@ -72,7 +72,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/tesla_s_2021.png"
+        "Image": "tesla_s_2021.png"
     },
     {
         "Car_ID" : "005",
@@ -87,7 +87,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/nissan_altima_2016.png"
+        "Image": "nissan_altima_2016.png"
     },
     {
         "Car_ID" : "006",
@@ -102,7 +102,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/bmw_3_2019.png"
+        "Image": "bmw_3_2019.png"
     },
     {
         "Car_ID" : "007",
@@ -117,7 +117,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/mercedes_c_2018.png"
+        "Image": "mercedes_c_2018.png"
     },
     {
         "Car_ID" : "008",
@@ -132,7 +132,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/audi_a4_2020.png"
+        "Image": "audi_a4_2020.png"
     },
     {
         "Car_ID" : "009",
@@ -147,7 +147,7 @@
         "Transmission_type":"Manual",
         "Seats":"4",
         "Body_type": "SUV",
-        "Image": "images/car_images/jeep_wrangler_2018.png"
+        "Image": "jeep_wrangler_2018.png"
     },
     {
         "Car_ID" : "010",
@@ -162,7 +162,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/toyota_camry_2020.png"
+        "Image": "toyota_camry_2020.png"
     },
     {
         "Car_ID" : "011",
@@ -177,7 +177,7 @@
         "Transmission_type":"Automatic",
         "Seats":"7",
         "Body_type": "SUV",
-        "Image": "images/car_images/bmw_x5_2021.png"
+        "Image": "bmw_x5_2021.png"
     },
     {
         "Car_ID" : "012",
@@ -192,7 +192,7 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Sedan",
-        "Image": "images/car_images/tesla_s_2022.png"
+        "Image": "tesla_s_2022.png"
     },
     {
         "Car_ID" : "013",
@@ -207,7 +207,7 @@
         "Transmission_type":"Automatic",
         "Seats":"4",
         "Body_type": "Coupe",
-        "Image": "images/car_images/ford_mustang_2017.png"
+        "Image": "ford_mustang_2017.png"
     },
     {
         "Car_ID" : "014",
@@ -222,6 +222,6 @@
         "Transmission_type":"Automatic",
         "Seats":"5",
         "Body_type": "Hatchback",
-        "Image": "images/car_images/honda_civic_2021.png"
+        "Image": "honda_civic_2021.png"
     }
 ]
