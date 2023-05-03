@@ -1,4 +1,3 @@
-<div ckass="main-container">
 <?php
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -6,8 +5,10 @@ error_reporting(E_ALL);
     $filename = 'assets/cars.json';
     $data = file_get_contents($filename);
     $decoded_json = json_decode($data, true);
-   
-    echo '<div class="car-grid">';
+
+    echo "<div class='car-grid'></br>";
+
+    echo "<h1 style='text-align:center; padding:5px;'>Browse Rental Cars</h1>";
     $i = 0;
     foreach ($decoded_json as $car) {
         if ($i % 3 == 0) {
@@ -33,13 +34,25 @@ error_reporting(E_ALL);
             <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
             <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
             <span class="car-price">$<?php echo $car_price;?>/day</span><br>
-            <a href="addToCart.php?car_id=<?php echo $car_id;?>">
-                <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="reloadPage()">
-                    <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                </button>
-            </a>
             <a href="viewProduct.php?car_id=<?php echo $car_id;?>">
                 <i class="fa fa-eye"></i> Details
+            </a></br>
+            <?php
+            if ($car_availability == false) {
+                ?>
+                <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey" onclick="unavailableAlert()">
+                <i class="fa fa-question-circle-o"></i> Unavailable</button>
+            <?php
+            } else {
+                ?>
+                <a href="addToCart.php?car_id=<?php echo $car_id;?>">
+                <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="reloadPage()">
+                    <i class="fa fa-cart-arrow-down"></i> Rent
+                </button>
+            </a>
+            <?php
+            }
+            ?>
             </a>
         </div>
 
@@ -54,4 +67,8 @@ error_reporting(E_ALL);
     }
     echo '</div>';
 ?>    
-</div>
+<script>
+    function unavailableAlert() {
+        alert("Sorry, this car is not available now.\nPlease try other cars.");
+    }
+</script>
