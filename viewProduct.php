@@ -42,15 +42,15 @@ foreach ($cars as $car) {
                 <b>Tranmission Type:</b> <?php echo $car_transmission;?></br>
                 <b>Seats:</b> <?php echo $car_seats;?></br>
                 </p>
-                <form action="addToCart.php" method="get">
+                <form action="addToCart.php" method="post">
                     <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
                     <?php
                     if ($car_availability== true) {
                         echo "
                         <p style='font-size: 20px'>Rent for how many days?</br>
-                        <input type='number' style='width: 50px;' name='quantity' min='0'</br>
+                        <input type='number' style='width: 50px;' name='quantity' min='0' max='10'></br>
                         </p>
-                        <button class='add-cart-btn' type='submit' id='btn' name='addToCart' onclick='reloadPage()><i class='fa fa-cart-arrow-down'></i> Rent</button>'
+                        <button class='add-cart-btn' type='submit' id='btn' name='addToCart' onclick='addedAlert()'><i class='fa fa-cart-arrow-down'></i> Rent</button>'
                         ";
                     } else {
                         echo "<h2 style='color:red'>Unavailable to rent</h2>";
@@ -62,4 +62,9 @@ foreach ($cars as $car) {
     }
 }
 ?>
+<script>
+    function addedAlert() {
+        alert("<?php echo $car_name . " (" . $car_year . ")";?> added to cart.");
+    }
+</script>
 <?php include 'includes/footer.php'?>

@@ -42,37 +42,27 @@ $decoded_json = json_decode($data, true);
         $total_price = 0;
         echo "<table>";
         echo "<tr><th>Item</th><th>Price</th><th>Quantity</th></tr>";
-        foreach ($_SESSION['cart'] as $car_id => $quantity) {
-            var_dump($decoded_json);
-            var_dump($car_id);
-            if(isset($decoded_json[$car_id])) {
-                $car = $decoded_json[$car_id];
-
-                $car_id = $car['Car_ID'];
-                $car_name = $car['Name'];
-                $car_model = $car['Model'];
-                $car_make = $car['Make'];
-                $car_mileage = $car['Mileage'];
-                $car_year = $car['Year'];
-                $car_availability = $car['Availability'];
-                $car_price = $car['Price_per_day'];
-                $car_fuel = $car['Fuel'];
-                $car_transmission = $car['Transmission_type'];
-                $car_seats = $car['Seats'];
-                $car_bodytype = $car['Body_type'];
-                $car_image = $car['Image'];
-
-                echo "<tr>";
-                echo "<td>$car_name</td>";
-                echo "<td>$car_price</td>";
-                echo "<td>$quantity</td>";
-                echo "<td></td>";
-                echo "</tr>";
-                $total_price += $car_price * $quantity;
+        foreach ($_SESSION['cart'] as $car_id => $car_data) {
+            $car_name = $car_data['car_name'];
+            $car_year = $car_data['car_year'];
+            $car_image = $car_data['car_image'];
+            $car_price = $car_data['car_price'];
+            $quantity = $car_data['quantity'];
+            echo "<tr>";
+            echo "<td>$car_name ($car_year)</td>";
+            echo "<td>$$car_price/day</td>";
+            echo "<td>$quantity";
+            if ($quantity > 1) {
+                echo " days";
+            } else {
+                echo " day";
             }
+            echo "</td>";
+            echo "</tr>";
+            $total_price += $car_price * $quantity;
         }
         echo "</table>";
-        echo "Total price: $total_price";
+        echo "Total price: $$total_price/day";
     }
     ?>
 </div>

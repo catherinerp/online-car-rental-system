@@ -45,11 +45,13 @@ error_reporting(E_ALL);
             <?php
             } else {
                 ?>
-                <a href="addToCart.php?car_id=<?php echo $car_id;?>">
-                <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="reloadPage()">
-                    <i class="fa fa-cart-arrow-down"></i> Rent
-                </button>
-            </a>
+                <form action="addToCart.php" method="post">
+                <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
+                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="addedAlert()">
+                        <i class="fa fa-cart-arrow-down"></i> Rent
+                    </button>
+                    </a>
+                </form>
             <?php
             }
             ?>
@@ -70,5 +72,8 @@ error_reporting(E_ALL);
 <script>
     function unavailableAlert() {
         alert("Sorry, this car is not available now.\nPlease try other cars.");
+    }
+    function addedAlert() {
+        alert("<?php echo $car_name . " (" . $car_year . ")";?> added to cart.");
     }
 </script>
