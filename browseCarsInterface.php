@@ -11,7 +11,7 @@
             $car_name = $car['Name'];
             $car_model = $car['Model'];
             $car_make = $car['Make'];
-            $car_mileage = $car['Mileage'];
+            $car_mileage = number_format($car['Mileage']);
             $car_year = $car['Year'];
             $car_availability = $car['Availability'];
             $car_price = $car['Price_per_day'];
@@ -26,6 +26,7 @@
                 <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" style="width: 300px"></img><br><br>
                 <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
                 <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
+                <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
                 <span class="car-price">$<?php echo $car_price;?>/day</span><br>
                 <a href="viewProduct.php?car_id=<?php echo $car_id;?>">
                     <i class="fa fa-eye"></i> Details
@@ -47,17 +48,14 @@
                     </form>
                 <?php
                 }
-                ?>
-                </a>
-            </div>
-
-            <?php
+                echo "</a>";
+            echo "</div>";
             $i++;
             if ($i % 3 == 0) {
-                echo '</div>';
+                echo "</div>\n";
             }
         }
         if ($i % 3 != 0) {
-            echo '</div>';
+            echo "</div>";
         }
-        echo '</div>';
+        echo "</div>";

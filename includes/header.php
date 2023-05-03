@@ -18,10 +18,10 @@ session_start();
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<div class="header">
+<header class="header">
     <a href="./index.php"><img class="header-logo" src="assets/images/logo-full.png"></a>
     <div class="header-title">Car Rental Center</div>
     <a href="viewCart.php"><button class="header-cart"><i class="fa fa-shopping-cart"></i></button></a>
     <div style="clear: both;"></div>
-</div>
+</header>
 <body>

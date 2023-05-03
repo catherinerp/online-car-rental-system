@@ -1,3 +1,4 @@
+<div class="main-container">
 <?php
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -8,7 +9,7 @@ $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);
 ?>
     <div class="column-left">
-        <h3>Filter</h3>
+        <h3>Filter Cars</h3>
         <form method="GET">
             <h5>Make</h5>
             <select id="filter_make" name="filter_make" class="form-control">
@@ -67,9 +68,9 @@ $decoded_json = json_decode($data, true);
             <h5>Price Range</h5>
             <select id="sort_price_range" name="sort_price_range" class="form-control">
                 <option value="" disabled selected>Sort by Price Range</option>
-                <option value="lowPrice">0 - $50</option>
+                <option value="lowPrice">MIN - $50</option>
                 <option value="medPrice">$50 - $100</option>
-                <option value="highPrice">$100 - $150 </option>
+                <option value="highPrice">$100 - MAX</option>
             </select></br>
             <h5>Year</h5>
             <select id="sort_year_order" name="sort_year_order" class="form-control">
@@ -96,6 +97,7 @@ $decoded_json = json_decode($data, true);
     }
 ?>   
 </div>
+<div class="main-container">
 <script> 
     function unavailableAlert() {
         alert("Sorry, this car is not available now.\nPlease try other cars.");
