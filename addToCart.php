@@ -10,7 +10,7 @@ if (isset($_GET['car_id'])) {
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = array();
     }
-    
+
     if(isset($_GET['quantity'])) {
         $quantity = $_GET['quantity'];
 
@@ -23,12 +23,12 @@ if (isset($_GET['car_id'])) {
     } else {
         $_SESSION['cart'][$car_id] = array('quantity' => $quantity);
     }
-
-    $_SESSION['cart'][$car_id] = array('quantity' => $quantity);
-
+    
     echo "<pre>";
     print_r($_SESSION['cart']);
     echo "</pre>";
+
+    exit();
 
 }
 ?> 

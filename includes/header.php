@@ -21,7 +21,7 @@ session_start();
 <div class="header">
     <a href="./index.php"><img class="header-logo" src="assets/images/logo-full.png"></a>
     <div class="header-title">Car Rental Center</div>
-    <button class="header-cart"><i class="fa fa-shopping-cart"></i></button>
+    <a href="viewCart.php"><button class="header-cart"><i class="fa fa-shopping-cart"></i></button></a>
     <div style="clear: both;"></div>
 </div>
 <body>

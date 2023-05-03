@@ -44,10 +44,18 @@ foreach ($cars as $car) {
                 </p>
                 <form action="addToCart.php" method="get">
                     <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
-                    <p style="font-size: 20px">Rent for how many days?</br>
-                    <input type="number" style="width: 50px;" name="quantity"></br>
-                    </p>
-                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="reloadPage()"><i class="fa fa-cart-arrow-down"></i> Rent</button>
+                    <?php
+                    if ($car_availability== true) {
+                        echo "
+                        <p style='font-size: 20px'>Rent for how many days?</br>
+                        <input type='number' style='width: 50px;' name='quantity' min='0'</br>
+                        </p>
+                        <button class='add-cart-btn' type='submit' id='btn' name='addToCart' onclick='reloadPage()><i class='fa fa-cart-arrow-down'></i> Rent</button>'
+                        ";
+                    } else {
+                        echo "<h2 style='color:red'>Unavailable to rent</h2>";
+                    }
+                    ?>
                     </form>
             </div>
     <?php
