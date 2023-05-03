@@ -23,5 +23,12 @@ session_start();
     <div class="header-title">Car Rental Center</div>
     <a href="viewCart.php"><button class="header-cart"><i class="fa fa-shopping-cart"></i></button></a>
     <div style="clear: both;"></div>
+    <div class="topnav">
+        <a href="./index.php">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="./help.php">Help</a>
+    </div>
+
 </header>
 <body>

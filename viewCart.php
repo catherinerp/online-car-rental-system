@@ -30,10 +30,10 @@ $decoded_json = json_decode($data, true);
         <?php
         if (empty($_SESSION['cart'])) {
             echo "<h2>Your cart is empty.</h2>";
-            echo "<form method='get'>";
-            echo "<button style='float:right' class='add-cart-btn' type='submit' name='goHome'>Go Home</button>";
-            echo "</form>";
-            echo "</div>";
+                echo "<form method='get'>";
+                echo "<button style='float:right' class='add-cart-btn' type='submit' name='goHome'>Go Home</button>";
+                echo "</form>";
+                echo "</div>";
             echo "</div>";
         } else {
             $total_price = 0;
