@@ -131,3 +131,8 @@ a .hide-link {
     padding: 5px 10px;
     background-color: white;
 }
+
+.cart-view-container {
+    width: 50%;
+    margin: 50px 200px;
+}

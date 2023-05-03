@@ -3,6 +3,11 @@
 <?php
 session_start();
 
+if (isset($_GET['goBack'])) {
+    header("Location: index.php");
+    exit();
+}
+
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $cars = json_decode($data, true);
@@ -22,7 +27,12 @@ foreach ($cars as $car) {
     $car_bodytype = $car['Body_type'];
     $car_image = $car['Image'];
     if ($car['Car_ID'] === $car_id) {
-        ?>
+        ?>  
+            <form method="get">
+            <button style="float:left; margin:30px;" class="add-cart-btn" type="submit" name="goBack">
+                <i class="fa fa-arrow-left"></i> Go Back
+            </button>
+            </form>
             <div class="car-view" style="
             margin: 0 auto;
             padding: 50px;
