@@ -69,7 +69,7 @@ $decoded_json = json_decode($data, true);
                 <option value="" disabled selected>Sort by Price Range</option>
                 <option value="lowPrice">0 - $50</option>
                 <option value="medPrice">$50 - $100</option>
-                <option value="highPrice">$50 - $100 </option>
+                <option value="highPrice">$100 - $150 </option>
             </select></br>
             <h5>Year</h5>
             <select id="sort_year_order" name="sort_year_order" class="form-control">
