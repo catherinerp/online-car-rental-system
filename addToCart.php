@@ -29,17 +29,37 @@ if(isset($_POST['quantity'])) {
 }
 
 if (isset($_SESSION['cart'][$car_id])) {
-    $_SESSION['cart'][$car_id]['quantity'] += $quantity;
+    if ($_SESSION['cart'][$car_id]['quantity'] >= 10) {
+        echo "<script type='text/javascript'>
+        alert('Cars are not available to rent for more than 10 days.');
+        </script>";
+        exit;
+    } else {
+        echo "<script type='text/javascript'>
+        alert('Car added to cart.');
+        </script>";
+        $_SESSION['cart'][$car_id]['quantity'] += $quantity;
+    }
 } else {
-    $cart_item = [
-        'car_id' => $car_id,
-        'car_name' => $selected_car['Name'],
-        'car_year' => $selected_car['Year'],
-        'car_image' => $selected_car['Image'],
-        'car_price' => $selected_car['Price_per_day'],
-        'quantity' => $quantity
-    ];
-    $_SESSION['cart'][$car_id] = $cart_item;
+    if ($quantity > 10) {
+        echo "<script type='text/javascript'>
+        alert('Cars are not available to rent for more than 10 days.');
+        </script>";
+        exit;
+    } else {
+        $cart_item = [
+            'car_id' => $car_id,
+            'car_name' => $selected_car['Name'],
+            'car_year' => $selected_car['Year'],
+            'car_image' => $selected_car['Image'],
+            'car_price' => $selected_car['Price_per_day'],
+            'quantity' => $quantity
+        ];
+        echo "<script type='text/javascript'>
+        alert('Car added to cart.');
+        </script>";
+        $_SESSION['cart'][$car_id] = $cart_item;
+    }
 }
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);

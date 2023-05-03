@@ -37,6 +37,7 @@ $decoded_json = json_decode($data, true);
             echo "</div>";
         } else {
             $total_price = 0;
+            $total_quantity = 0;
             echo "<div class='cart-view-container'>";
             echo "<h1 style='text-align:center'>Shopping Cart</h1>";
             echo "<table>";
@@ -47,12 +48,6 @@ $decoded_json = json_decode($data, true);
                 $car_price = $car_data['car_price'];
                 $quantity = $car_data['quantity'];
                 echo "<tr>";
-                echo "
-                <td><form method='get'>
-                <button type='submit' value='$car_id' name='removeCartItem' onclick='return confirm('Are you sure you want to remove this item?')'>
-                    <i class='fa fa-remove' style='font-size:30px'></i>
-                </button>
-                </td></form>";
                 echo "<td><img src='assets/images/car_images/$car_image' style='height:100px'></td>";
                 echo "<td>$car_name ($car_year)</td>";
                 echo "<td>$$car_price/day</td>";
@@ -63,19 +58,31 @@ $decoded_json = json_decode($data, true);
                     echo " day";
                 }
                 echo "</td>";
+                echo "
+                <td><form method='get'>
+                <button type='submit' class='remove-item-btn' value='$car_id' name='removeCartItem' onclick='return confirm('Are you sure you want to remove this item?')'>
+                    <i class='fa fa-remove' style='font-size:28px'></i>
+                </button>
+                </td></form>";
                 echo "</tr>";
+                $total_quantity++;
                 $total_price += $car_price * $quantity;
             }
             $total_price = number_format((float)$total_price, 2, '.', '');
             ?>
             </table>
-            <p>Total price: $<?php echo $total_price;?>/day</p>
+            </br>
+            <hr>
+            <h3>Total</h3>
+            <p><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
+            $<?php echo $total_price;?>/day</p>
             <form method="get">
                     <button class="empty-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
             <form method="get">
                 <button style="float:right" class="go-home-btn" type="submit" name="finish">Go Home</button>
             </form>
+            <a class="checkout-btn" type="button" href="checkout.php" style="float:right">Checkout</a>
             </div>
         <?php    
         }

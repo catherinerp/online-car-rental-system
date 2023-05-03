@@ -38,7 +38,7 @@
                     ?>
                     <form action="addToCart.php" method="post">
                     <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
-                        <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="addedAlert()">
+                        <button class="add-cart-btn" type='submit" id='btn' name="addToCart">
                             <i class="fa fa-cart-arrow-down"></i> Rent
                         </button>
                     </form>

@@ -58,6 +58,10 @@ header {
     text-decoration: none;
   }
 
+  .topnav a .account-button {
+    float: right;
+  }
+
 /** BrowseCars CSS **/
 
 .column-left {
@@ -173,6 +177,13 @@ a .hide-link {
 }
 
 .cart-view-container {
-    width: 50%;
-    margin: 50px 200px;
+    margin: 50px 100px;
+}
+
+.remove-item-btn {
+    background-color: inherit;
+    color:	#696969;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
 }
