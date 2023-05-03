@@ -25,8 +25,7 @@ session_start();
     <div style="clear: both;"></div>
     <div class="topnav">
         <a href="./index.php">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
+        <a class="account-button" href="#">Account</a>
         <a href="./help.php">Help</a>
     </div>
 
