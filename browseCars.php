@@ -91,7 +91,14 @@ $decoded_json = json_decode($data, true);
     <?php
     if(isset($_GET['query'])) {
         include 'filterFunctions.php';
-        include 'browseCarsInterface.php';
+        if (empty($decoded_json)) {
+            echo "<div class='column-right'>";
+            echo "<h3 style='text-align:center'>Sorry! None of our cars fit your critera, please try again.</h3>";
+            echo "</div>";
+        } else {
+            include 'browseCarsInterface.php';
+        }
+
     } else {
         include 'browseCarsInterface.php';
     }

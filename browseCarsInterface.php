@@ -14,23 +14,20 @@
             $car_mileage = number_format($car['Mileage']);
             $car_year = $car['Year'];
             $car_availability = $car['Availability'];
-            $car_price = $car['Price_per_day'];
+            $car_price = number_format((float)$car['Price_per_day'], 2, '.', '');
             $car_fuel = $car['Fuel'];
             $car_transmission = $car['Transmission_type'];
             $car_seats = $car['Seats'];
             $car_bodytype = $car['Body_type'];
             $car_image = $car['Image'];
             ?>
-            
+            <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
             <div class="car">
-                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" style="width: 300px"></img><br><br>
+                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" style="width: 260px"></img><br><br>
                 <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
                 <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
                 <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
                 <span class="car-price">$<?php echo $car_price;?>/day</span><br>
-                <a href="viewProduct.php?car_id=<?php echo $car_id;?>">
-                    <i class="fa fa-eye"></i> Details
-                </a></br>
                 <?php
                 if ($car_availability == false) {
                     ?>
@@ -44,12 +41,11 @@
                         <button class="add-cart-btn" type='submit" id='btn' name="addToCart" onclick="addedAlert()">
                             <i class="fa fa-cart-arrow-down"></i> Rent
                         </button>
-                        </a>
                     </form>
                 <?php
                 }
-                echo "</a>";
             echo "</div>";
+            echo "</a>";
             $i++;
             if ($i % 3 == 0) {
                 echo "</div>\n";

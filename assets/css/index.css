@@ -64,6 +64,8 @@ header {
 .main-container {
     background-color: #eeeeee;
     padding: 20px;
+    height: 100%;
+    width: 100%;
 }
 
 .car-grid {
@@ -84,12 +86,10 @@ header {
     background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-right: 10px;
+    padding: 20px;
     flex-basis: 30%;
     min-width: 300px;
     max-width: 30%;
-    text-align: center;
 }
 
 .car-view {
@@ -103,11 +103,8 @@ header {
     max-width: 30%;
 }
 
-.car-name, .car-price {
-    font-size: 20px;
-}
-
 .car-name {
+    font-size: 22px;
     font-weight: 500;
 }
 
@@ -116,6 +113,7 @@ header {
 }
 
 .car-price {
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -147,9 +145,11 @@ a .hide-link {
 /** Cart View CSS **/
 
 .cart-container {
-    margin: 10px 25px;
+    margin: 10px 300px;
     padding: 5px 10px;
     background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .cart-view-container {
