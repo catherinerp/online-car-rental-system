@@ -18,7 +18,7 @@ foreach ($cars as $car) {
     $car_model = $car['Model'];
     $car_make = $car['Make'];
     $car_year = $car['Year'];
-    $car_price = $car['Price_per_day'];
+    $car_price = number_format((float)$car['Price_per_day'], 2, '.', '');
     $car_availability = $car['Availability'];
     $car_mileage = number_format($car['Mileage']);
     $car_fuel = $car['Fuel'];
@@ -45,6 +45,7 @@ foreach ($cars as $car) {
                 <b>Make:</b> <?php echo $car_make;?></br>
                 <b>Model:</b> <?php echo $car_model;?></br>
                 <b>Body Type:</b> <?php echo $car_bodytype;?><br>
+                <b>Price Per Day:</b> $<?php echo $car_price;?></br>
                 <b>Mileage:</b> <?php echo $car_mileage;?>km</br>
                 <b>Year:</b> <?php echo $car_year;?></br>
                 <b>Fuel Type:</b> <?php echo $car_fuel;?></br>
@@ -57,7 +58,7 @@ foreach ($cars as $car) {
                     if ($car_availability== true) {
                         echo "
                         <p style='font-size: 20px'>Rent for how many days?</br>
-                        <input type='number' style='width: 50px;' name='quantity' min='0' max='10'></br>
+                        <input type='number' style='width: 50px;' value='1' name='quantity' min='1' max='10'></br>
                         </p>
                         <button class='add-cart-btn' type='submit' id='btn' name='addToCart' onclick='addedAlert()'><i class='fa fa-cart-arrow-down'></i> Rent</button>'
                         ";
