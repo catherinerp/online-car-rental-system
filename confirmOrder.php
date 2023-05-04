@@ -1,6 +1,6 @@
 <?php
 
-include 'includes/header.php';
+include 'includes/cartHeader.php';
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -26,8 +26,6 @@ if (empty($_SESSION['cart'])) {
     <h1>Your order has been confirmed!</h1>
         <h3>Thank you for renting from Hertz-UTS <i class="fa fa-car"></i></h3></br>
         <p class="confirmation-order-message">
-            A confirmation email with your order details has been sent to
-            <b><?php echo $email?></b>.</br>
             Your car should be available to be picked up within the hour, please wait for a
             pick-up information email before picking it up.
         </p></br>

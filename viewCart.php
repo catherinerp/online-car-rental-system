@@ -1,6 +1,6 @@
 <?php
 
-include 'includes/header.php';
+include 'includes/cartHeader.php';
 session_start();
 
 ini_set('display_errors', '1');
@@ -78,12 +78,12 @@ $decoded_json = json_decode($data, true);
             <p><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
             $<?php echo $total_price;?>/day</p>
             <form method="get">
-                    <button class="empty-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
+                    <button class="add-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
             <form method="get">
                 <button style="float:right" class="go-home-btn" type="submit" name="finish">Go Home</button>
             </form>
-            <a class="checkout-btn" type="button" href="checkout.php" style="float:right">Checkout</a>
+            <a class="add-cart-btn" type="button" href="checkout.php" style="float:right">Checkout</a>
             </div>
         <?php    
         }

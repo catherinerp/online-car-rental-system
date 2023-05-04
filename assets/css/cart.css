@@ -1,0 +1,152 @@
+
+
+* {
+    font-family: 'Tajawal', sans-serif;
+}
+
+/** Header CSS **/
+
+.header {
+    background-color: black;
+    display: block;
+}
+
+.header-logo {
+    margin: 20px;
+    height: 15vh;
+    float: left;
+}
+
+.header-title {
+    color: white;
+    text-align: center;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 500;
+    font-size: 45px;
+}
+
+/** BrowseCars CSS **/
+
+.column-left {
+    float: left;
+    width: 15%;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.column-right {
+    float: left;
+    width: 85%;
+    padding: 15px;
+}
+
+.main-container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.main-container {
+    background-color: #eeeeee;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.car-grid {
+    background-color: #eeeeee;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.car-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 50px;
+}
+
+.car {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex-basis: 30%;
+    min-width: 300px;
+    max-width: 30%;
+}
+
+.car-view {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-right: 10px;
+    flex-basis: 30%;
+    min-width: 300px;
+    max-width: 30%;
+}
+
+.car-name {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.car-bodytype {
+    font-weight: 300;
+}
+
+.car-price {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+a .hide-link {
+    color: grey;
+    text-decoration: none;
+}
+
+.add-cart-btn {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 8px;
+}
+
+.add-cart-btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+/** Cart View CSS **/
+
+.cart-container {
+    margin: 10px 300px;
+    padding: 5px 10px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.cart-view-container {
+    margin: 50px 100px;
+}
+
+.remove-item-btn {
+    background-color: inherit;
+    color:	#696969;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}

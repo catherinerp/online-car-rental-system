@@ -3,10 +3,14 @@
         <h1 style="text-align:center; padding:5px;">Browse Rental Cars</h1>
         <?php
         $i = 0;
+        $filename = 'assets/cars.json';
+        $data = file_get_contents($filename);
+        $decoded_json = json_decode($data, true);
         foreach ($decoded_json as $car) {
             if ($i % 3 == 0) {
                 echo '<div class="car-row">';
             }
+            
             $car_id = $car['Car_ID'];
             $car_name = $car['Name'];
             $car_model = $car['Model'];
