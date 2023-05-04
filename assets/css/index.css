@@ -41,6 +41,7 @@
 .topnav {
     overflow: hidden;
     background-color: #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
   
   .topnav a {
@@ -137,6 +138,12 @@
     flex-basis: 30%;
     min-width: 300px;
     max-width: 30%;
+}
+
+.car-image {
+    width: 260px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .car-view {

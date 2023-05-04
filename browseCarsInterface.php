@@ -27,7 +27,7 @@
             ?>
             <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
             <div class="car">
-                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" style="width: 260px"></img><br><br>
+                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img><br><br>
                 <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
                 <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
                 <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
