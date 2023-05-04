@@ -18,21 +18,25 @@ session_start();
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<header class="header">
+<div class="header">
     <a href="./index.php"><img class="header-logo" src="assets/images/logo-full.png"></a>
     <div class="header-title">Car Rental Center</div>
-        <div class="nav-item dropdown">
+    <div class="nav-item dropdown">
             <div class="dropdown">
-                <button class="header-cart" data-toggle="dropdown">
-                    <i class="fa fa-shopping-cart"></i>
                     <?php 
                     if (empty($_SESSION['cart'])) {
-                        echo "</button>";
+                        ?>
+                        <button id="header-cart" title="Cart is empty!" class="header-cart" data-toggle="dropdown" style="color:dimgray; cursor:default" disabled>
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <?php
                     } else {
                         $cart = $_SESSION['cart'];
                         $count = count($cart);
                         ?>
-                        <span style="font-size: 18px" class="badge badge-pill badge-danger"><?php echo $count?></span>
+                        <button id="header-cart" class="header-cart" data-toggle="dropdown">
+                        <span style="font-size: 15px" class="badge badge-pill badge-danger"><?php echo $count?></span>
+                        <i class="fa fa-shopping-cart"></i>
                         </button>
                         <div class="dropdown-menu">
                             <?php
@@ -78,5 +82,5 @@ session_start();
         <a class="account-button" href="#">Account</a>
         <a href="./help.php">Help</a>
     </div>
-</header>
+</div>
 <body>

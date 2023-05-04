@@ -15,7 +15,7 @@ include 'removeCartItem.php';
 include 'emptyCart.php';
 
 if (isset($_GET['goHome'])) {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -46,6 +46,7 @@ $decoded_json = json_decode($data, true);
                 $car_year = $car_data['car_year'];
                 $car_image = $car_data['car_image'];
                 $car_price = $car_data['car_price'];
+                $car_availability = $car_data['car_availability'];
                 $quantity = $car_data['quantity'];
                 echo "<tr>";
                 echo "<td><img src='assets/images/car_images/$car_image' style='height:100px'></td>";

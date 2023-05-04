@@ -8,7 +8,7 @@ function emptyCart() {
 
 if (isset($_GET['emptyCart'])) {
     emptyCart();
-    header("Location: ".$_SERVER['PHP_SELF']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
 ?>

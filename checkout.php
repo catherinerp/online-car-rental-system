@@ -4,14 +4,6 @@
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-/**
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-require './PHPMailer/src/Exception.php';
-require './PHPMailer/src/PHPMailer.php';
-require './PHPMailer/src/SMTP.php';
-session_start();
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
@@ -72,59 +64,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       }
     if ($nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
-        $fullname = htmlentities($_POST['fullname']);
-        $email = htmlentities($_POST['email']);
-        $address = htmlentities($_POST['address']);
-        $state = htmlentities($_POST['state']);
-        $country = htmlentities($_POST['country']);
-        $subject = htmlentities("your order has been confirmed! | Grocery TO-GO");
-        $sender = htmlentities("Grocery TO-GO");
+      $filename = 'assets/cars.json';
+      $data = file_get_contents($filename);
+      $decoded_json = json_decode($data, true);
 
-        $today_date = date("d/m/Y");
-        $current_time = date("h:i:a");
-        $total_price = htmlentities($total_price);
-        
-        $message = '
-        <html>
-          <head>
-            <title>Order Confirmation | Grocery TO-GO</title>
-          </head>
-          <body>
-            <h1>Your order has been confirmed!</h1>
-            <h3>Thank you for ordering from Grocery TO-GO.</h3>'
-            .'<p>You should expect your order to be delivered within 2-3 business days.</p>'
-            .'<p><b>Time:</b> '. $current_time .'</p>'
-            .'<p><b>Date:</b> '. $today_date .'</></p><hr>'
-            .'<h2>Billing Details </h2>'
-            .'<p><b>Full Name: </b>'. $fullname .'</p>'
-            .'<p><b>Email: </b>'. $email .'</p>'
-            .'<p><b>Address: </b>'. $address .'</p>'
-            .'<p><b>State: </b>'. $state .'</p>'
-            .'<p><b>Country: </b>'. $country .'</p>
-          </body>
-        ';
-        $message .="
-        </body>
-        </html>";
+      foreach ($_SESSION['cart'] as $car_id => $car_data) {
+      $car_availability = $car_data['car_availability'];
+        if ( $car_availability == true ) {
+          $car_availability == false;
+        }
+      $new_json = json_encode($data);
+      file_put_contents('assets/cars.json', $new_json);
+      
 
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username='grocerytogogo@gmail.com';
-        $mail->Password='whivlxsyfmrolzyi';
-        $mail->Port= 465;
-        $mail->SMTPSecure = 'ssl';
-        $mail->isHTML(true);
-        $mail->setFrom($email, $sender);
-        $mail->addAddress($email);
-        $mail->Subject = ("$fullname, $subject");
-        $mail->Body = $message;
-        $mail->send();
-
-        header("Location: confirmOrderPage.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
-        exit();
+      header("Location: confirmOrder.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
+      exit();
     }  
+  }
 }
 
   function test_input($data) {
@@ -132,8 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-  }*/
-  $filename = 'assets/cars.json';
+  }
+$filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);
 
@@ -206,7 +162,7 @@ $decoded_json = json_decode($data, true);
                 <h3>Total</h3>
                 <p><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
                 $<?php echo $total_price;?>/day</p>
-                <input style="float:right" class="checkout-btn" type="submit" name="submit" value="Place Order"></input>
+                <input style="float:right" class="checkout-btn" type="submit" name="submit" value="Place Order"></input>ckout-btn" type="submit" name="submit" onclick="disableCartBtn(event)">Place Order</button>
             </div>
         </form>
         </div>

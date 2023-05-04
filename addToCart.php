@@ -52,6 +52,7 @@ if (isset($_SESSION['cart'][$car_id])) {
             'car_name' => $selected_car['Name'],
             'car_year' => $selected_car['Year'],
             'car_image' => $selected_car['Image'],
+            'car_availability' => $selected_car['Availability'],
             'car_price' => $selected_car['Price_per_day'],
             'quantity' => $quantity
         ];
