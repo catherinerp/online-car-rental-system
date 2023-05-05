@@ -139,6 +139,8 @@ a .hide-link {
     border-radius: 8px;
 }
 
+.required { color: red; }
+
 .cart-view-container {
     margin: 50px 100px;
 }
