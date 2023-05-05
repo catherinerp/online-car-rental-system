@@ -63,82 +63,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $countryIsValid = true;
         }
       }
-      $filename = 'assets/cars.json';
-      $data = file_get_contents($filename);
-      $decoded_json = json_decode($data, true);
-      $cart_has_available_items = false; // flag to track if there are any available items in the cart
-      
-      include 'includes/dbConfig.php';
-
-      foreach ($_SESSION['cart'] as $car_id => $car_data) {
-        $car_availability = $car_data['car_availability'];
-        if ($car_availability == true) {
-            $cart_has_available_items = true;
-            break; // exit the loop early if we find an available item
-        }
-    }
-
-    foreach ($_SESSION['cart'] as $car_id => $car_data) {
-      $car_id = $car_data['car_id'];
-      $car_price = $car_data['car_price'];
-      $rent_days = $car_data['quantity'];
-      $bond_amount = $car_price * $rent_days;
-      $email = $_POST['email'];
-      $rent_date = date('Y/m/d');
+      if ($nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
+        $filename = 'assets/cars.json';
+        $data = file_get_contents($filename);
+        $decoded_json = json_decode($data, true);
   
-      $sql = "SELECT MAX(rent_id) AS max_rent_id FROM renting_history";
-      $result = mysqli_query($conn, $sql);
-      
-      if (!$result) {
-          die('Error: ' . mysqli_error($conn));
-      }
-      
-      $row = mysqli_fetch_assoc($result);
-      $rent_id = $row['max_rent_id'] + 1;
+        $cart_has_available_items = false; // flag to track if there are any available items in the cart
   
-      mysqli_free_result($result);
-  
-      $stmt = mysqli_prepare($conn, "INSERT INTO renting_history (rent_id, car_id, user_email, rent_date, rent_days, bond_amount) VALUES (?, ?, ?, ?, ?, ?)");
-  
-      mysqli_stmt_bind_param($stmt, "iisssi", $rent_id, $car_id, $email, $rent_date, $rent_days, $bond_amount);
-      mysqli_stmt_execute($stmt);
-  
-      mysqli_stmt_close($stmt);
-  }
-      
-      if ($cart_has_available_items && $nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
-        $car_availability = $car_data['car_availability'];
         foreach ($_SESSION['cart'] as $car_id => $car) {
-          if ($car_availability == true) {
-            // Check if car_id already exists in decoded json
-            if (isset($decoded_json[$car_id])) {
-                // Car already exists, update availability
-                $decoded_json[$car_id]['Availability'] = false;
-            } else {
-                // Car does not exist, add new entry
-                $decoded_json[$car_id]['Car_ID'] = $car_id;
-                $decoded_json[$car_id]['Name'] = $car_name;
-                $decoded_json[$car_id]['Make'] = $car_make;
-                $decoded_json[$car_id]['Model'] = $car_model;
-                $decoded_json[$car_id]['Mileage'] = $car_mileage;
-                $decoded_json[$car_id]['Year'] = $car_year;
-                $decoded_json[$car_id]['Availability'] = false;
-                $decoded_json[$car_id]['Price_per_day'] = $car_price;
-                $decoded_json[$car_id]['Fuel'] = $car_fuel;
-                $decoded_json[$car_id]['Transmission_type'] = $car_transmission;
-                $decoded_json[$car_id]['Seats'] = $car_id;
-                $decoded_json[$car_id]['Body_type'] = $car_bodytype;
-                $decoded_json[$car_id]['Image'] = $car_id;
+        $car_availability = $car['car_availability'];
+          if ( $car_availability == true ) {
+            $car_availability == false;
+            $car_availability = $car['car_availability'];
+            if ($car_availability == true) {
+                $cart_has_available_items = true;
+                break; // exit the loop early if we find an available item
             }
           }
+          if ($cart_has_available_items && $nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
+            $car_availability = $car['car_availability'];
+            if ($car_availability == true) {
+              if (isset($decoded_json[$car_id])) {
+                  $decoded_json[$car_id]['Availability'] = false;
+              } else {
+                $decoded_json[$car_id] = array(
+                  'Car_ID' => $car_id,
+                  'Name' => $car_name,
+                  'Make' => $car_make,
+                  'Model' => $car_model,
+                  'Mileage' => $car_mileage,
+                  'Year' => $car_year,
+                  'Availability' => false,
+                  'Price_per_day' => $car_price,
+                  'Fuel' => $car_fuel,
+                  'Transmission_type' => $car_transmission,
+                  'Seats' => $car_id,
+                  'Body_type' => $car_bodytype,
+                  'Image' => $car_id
+                );
+              }
+            }
+              $car_id = $car['car_id'];
+              $car_price = $car['car_price'];
+              $rent_days = $car['quantity'];
+              $bond_amount = $car_price * $rent_days;
+              $email = $_POST['email'];
+              $rent_date = date('Y/m/d');
+
+              include 'includes/dbConfig.php';
+          
+              $sql = "SELECT MAX(rent_id) AS max_rent_id FROM renting_history";
+              $result = mysqli_query($conn, $sql);
+              
+              if (!$result) {
+                  die('Error: ' . mysqli_error($conn));
+              }
+              $row = mysqli_fetch_assoc($result);
+              $rent_id = $row['max_rent_id'] + 1;
+              mysqli_free_result($result);
+              $stmt = mysqli_prepare($conn, "INSERT INTO renting_history (rent_id, car_id, user_email, rent_date, rent_days, bond_amount) VALUES (?, ?, ?, ?, ?, ?)");
+              mysqli_stmt_bind_param($stmt, "iisssi", $rent_id, $car_id, $email, $rent_date, $rent_days, $bond_amount);
+              mysqli_stmt_execute($stmt);
+              mysqli_stmt_close($stmt);
+          }
         }
-        
         $new_json = json_encode($decoded_json, JSON_PRETTY_PRINT);
         file_put_contents('assets/cars.json', $new_json);
-      
-      
-          header("Location: confirmOrder.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
-          exit();
+        header("Location: confirmOrder.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
+        exit();
       }
   }
 
@@ -148,11 +140,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = htmlspecialchars($data);
     return $data;
   }
-$filename = 'assets/cars.json';
-$data = file_get_contents($filename);
-$decoded_json = json_decode($data, true);
 
-?>
+  $filename = 'assets/cars.json';
+  $data = file_get_contents($filename);
+  $decoded_json = json_decode($data, true);
+
+  ?>
 
     <div class="cart-container">
         <?php

@@ -1,7 +1,7 @@
 <?php include 'includes/header.php'; ?>
 <div class="main-container">
     <div class="cart-container">
-        <h1 style="text-align:center">Welcome to Hertz-UTS!</h1>
+        <h1 style="text-align:center">Access Your Rent History</h1>
         <p style="padding: 20px;width: 100%;">
         This is a online car rental center that allows you to browse our selection of cars
         and rent them for a certain number of days. The rental car is booked from the date
