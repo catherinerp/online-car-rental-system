@@ -16,12 +16,19 @@ if(isset($_POST['viewAccount'])) {
     $result = mysqli_query($conn, $query);
     
     if(mysqli_num_rows($result) > 0) {
-        // Email found in database
+        echo "<h2 style='text-align:center'>Rent History</h2>";
         while($row = mysqli_fetch_assoc($result)) {
-            // Print matching columns
-            echo "Car: " . $row['car_id'] . "<br>";
-            echo "Bond: " . $row['bond_amount'] . "<br>";
-            // and so on for other columns
+            $filename = 'assets/cars.json';
+            $data = file_get_contents($filename);
+            $decoded_json = json_decode($data, true);
+            foreach ($decoded_json as $car) {
+                if ($row['car_id'] == $car['Car_ID']) {
+                    echo "<img style='height:150px' src='assets/images/car_images/". $car['Image'] ."'>";
+                    echo "<h4> ". $car['Name'] ." (" . $car['Year'] .")</h4>";
+                }
+            }
+            echo "Days Rented: " . $row['rent_days'] . "<br>";
+            echo "Bond: $" . $row['bond_amount'] . "<br>";
         }
     } else {
         ?>

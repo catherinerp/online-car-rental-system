@@ -81,7 +81,7 @@ $decoded_json = json_decode($data, true);
                     <button class="add-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
             <form method="get">
-                <button style="float:right" class="go-home-btn" type="submit" name="finish">Go Home</button>
+                <button style="float:right" class="add-cart-btn" type="submit" name="goHome">Go Home</button>
             </form>
             <a class="add-cart-btn" type="button" href="checkout.php" style="float:right">Checkout</a>
             </div>

@@ -8,12 +8,11 @@ $selected_car = null;
 foreach ($cars as $car) {
     if ($car['Car_ID'] === $car_id) {
         $selected_car = $car;
+        if (!$selected_car) {
+            echo "Car does not exist in database.";
+        }
         break;
     }
-}
-
-if (!$selected_car) {
-    echo "Car does not exist in database.";
 }
 
 session_start();

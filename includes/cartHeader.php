@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <title>Checkout</title>
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
     <link href="assets/css/index.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
