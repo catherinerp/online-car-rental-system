@@ -68,13 +68,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $decoded_json = json_decode($data, true);
       $cart_has_available_items = false; // flag to track if there are any available items in the cart
       
+      include 'includes/dbConfig.php';
+
       foreach ($_SESSION['cart'] as $car_id => $car_data) {
-          $car_availability = $car_data['car_availability'];
-          if ($car_availability == true) {
-              $cart_has_available_items = true;
-              break; // exit the loop early if we find an available item
-          }
+        $car_availability = $car_data['car_availability'];
+        if ($car_availability == true) {
+            $cart_has_available_items = true;
+            break; // exit the loop early if we find an available item
+        }
+    }
+
+    foreach ($_SESSION['cart'] as $car_id => $car_data) {
+      $car_id = $car_data['car_id'];
+      $car_price = $car_data['car_price'];
+      $rent_days = $car_data['quantity'];
+      $bond_amount = $car_price * $rent_days;
+      $email = $_POST['email'];
+      $rent_date = date('Y/m/d');
+  
+      $sql = "SELECT MAX(rent_id) AS max_rent_id FROM renting_history";
+      $result = mysqli_query($conn, $sql);
+      
+      if (!$result) {
+          die('Error: ' . mysqli_error($conn));
       }
+      
+      $row = mysqli_fetch_assoc($result);
+      $rent_id = $row['max_rent_id'] + 1;
+  
+      mysqli_free_result($result);
+  
+      $stmt = mysqli_prepare($conn, "INSERT INTO renting_history (rent_id, car_id, user_email, rent_date, rent_days, bond_amount) VALUES (?, ?, ?, ?, ?, ?)");
+  
+      mysqli_stmt_bind_param($stmt, "iisssi", $rent_id, $car_id, $email, $rent_date, $rent_days, $bond_amount);
+      mysqli_stmt_execute($stmt);
+  
+      mysqli_stmt_close($stmt);
+  }
       
       if ($cart_has_available_items && $nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
         $car_availability = $car_data['car_availability'];
