@@ -1,8 +1,9 @@
 <?php
+$filtered_array = array_filter($decoded_json);
 // Filter cars by selected make
 if (isset($_GET['filter_make'])) {
     $make = $_GET['filter_make'];
-    $decoded_json = array_filter($decoded_json, function($car) use($make) {
+    $filtered_array = array_filter($filtered_array, function($car) use($make) {
     return $car['Make'] === $make;
     });
 }
@@ -10,7 +11,7 @@ if (isset($_GET['filter_make'])) {
 // Filter cars by selected body type
 if (isset($_GET['filter_body_type'])) {
     $body_type = $_GET['filter_body_type'];
-    $decoded_json = array_filter($decoded_json, function($car) use($body_type) {
+    $filtered_array = array_filter($filtered_array, function($car) use($body_type) {
     return $car['Body_type'] === $body_type;
     });
 }
@@ -18,7 +19,7 @@ if (isset($_GET['filter_body_type'])) {
 // Filter cars by selected fuel type
 if (isset($_GET['filter_fuel_type'])) {
     $fuel_type = $_GET['filter_fuel_type'];
-    $decoded_json = array_filter($decoded_json, function($car) use($fuel_type) {
+    $filtered_array = array_filter($filtered_array, function($car) use($fuel_type) {
     return $car['Fuel'] === $fuel_type;
     });
 }
@@ -26,7 +27,7 @@ if (isset($_GET['filter_fuel_type'])) {
 // Sort cars by price
 if (isset($_GET['sort_price_order'])) {
     $price_order = $_GET['sort_price_order'];
-    usort($decoded_json, function($a, $b) use($price_order) {
+    usort($filtered_array, function($a, $b) use($price_order) {
     if ($price_order === 'ascPrice') {
         return $a['Price_per_day'] - $b['Price_per_day'];
     } else {
@@ -38,7 +39,7 @@ if (isset($_GET['sort_price_order'])) {
 // Filter cars by price range
 if (isset($_GET['sort_price_range'])) {
     $price_range = $_GET['sort_price_range'];
-    $decoded_json = array_filter($decoded_json, function($car) use($price_range) {
+    $filtered_array = array_filter($filtered_array, function($car) use($price_range) {
     $price = $car['Price_per_day'];
     if ($price_range === 'lowPrice') {
         return $price < 50;
@@ -53,7 +54,7 @@ if (isset($_GET['sort_price_range'])) {
 // Sort cars by year
 if (isset($_GET['sort_year_order'])) {
     $year_order = $_GET['sort_year_order'];
-    usort($decoded_json, function($a, $b) use($year_order) {
+    usort($filtered_array, function($a, $b) use($year_order) {
     if ($year_order === 'ascYear') {
         return $a['Year'] - $b['Year'];
     } else {
@@ -65,7 +66,7 @@ if (isset($_GET['sort_year_order'])) {
 // Sort cars by mileage
 if (isset($_GET['sort_mileage'])) {
     $mileage_order = $_GET['sort_mileage'];
-    usort($decoded_json, function($a, $b) use($mileage_order) {
+    usort($filtered_array, function($a, $b) use($mileage_order) {
     if ($mileage_order === 'ascMile') {
         return $a['Mileage'] - $b['Mileage'];
     } else {
@@ -74,3 +75,65 @@ if (isset($_GET['sort_mileage'])) {
     });
 }
 ?>
+
+<div class="column-right">
+        <div class="car-grid"></br>
+        <h1 style="text-align:center; padding:5px;">Filtered Results</h1>
+        <?php
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        error_reporting(E_ALL);
+        $i = 0;
+        foreach ($filtered_array as $car) {
+            if ($i % 3 == 0) {
+                echo '<div class="car-row">';
+            }
+            
+            $car_id = $car['Car_ID'];
+            $car_name = $car['Name'];
+            $car_model = $car['Model'];
+            $car_make = $car['Make'];
+            $car_mileage = number_format($car['Mileage']);
+            $car_year = $car['Year'];
+            $car_availability = $car['Availability'];
+            $car_price = number_format((float)$car['Price_per_day'], 2, '.', '');
+            $car_fuel = $car['Fuel'];
+            $car_transmission = $car['Transmission_type'];
+            $car_seats = $car['Seats'];
+            $car_bodytype = $car['Body_type'];
+            $car_image = $car['Image'];
+            ?>
+            <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
+            <div class="car">
+                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img><br><br>
+                <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
+                <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
+                <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
+                <span class="car-price">$<?php echo $car_price;?>/day</span><br>
+                <?php
+                if ($car_availability == false) {
+                    ?>
+                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey" onclick="unavailableAlert()">
+                    <i class="fa fa-question-circle-o"></i> Unavailable</button>
+                <?php
+                } else {
+                    ?>
+                    <form action="addToCart.php" method="post">
+                    <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
+                        <button class="add-cart-btn" type='submit" id='btn' name="addToCart">
+                            <i class="fa fa-cart-arrow-down"></i> Rent
+                        </button>
+                    </form>
+                <?php
+                }
+            echo "</div>";
+            echo "</a>";
+            $i++;
+            if ($i % 3 == 0) {
+                echo "</div>\n";
+            }
+        }
+        if ($i % 3 != 0) {
+            echo "</div>";
+        }
+        echo "</div>";

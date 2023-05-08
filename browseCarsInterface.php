@@ -2,6 +2,9 @@
         <div class="car-grid"></br>
         <h1 style="text-align:center; padding:5px;">Browse Rental Cars</h1>
         <?php
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        error_reporting(E_ALL);
         $i = 0;
         $filename = 'assets/cars.json';
         $data = file_get_contents($filename);
