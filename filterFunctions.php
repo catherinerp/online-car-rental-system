@@ -87,11 +87,11 @@ if (isset($_GET['sort_mileage'])) {
             echo "<h3 style='text-align:center'>Sorry! None of our cars fit your critera, please try again.</h3>";
             echo "</div>";
         } else {
+            ?>
+            <div class="car-grid"></br>
+            <h1 style="text-align:center; padding:5px;">Filtered Results</h1>
+            <?php
             foreach ($filtered_array as $car) {
-                ?>
-                <div class="car-grid"></br>
-                <h1 style="text-align:center; padding:5px;">Filtered Results</h1>
-                <?php
                 if ($i % 3 == 0) {
                     echo '<div class="car-row">';
                 }
