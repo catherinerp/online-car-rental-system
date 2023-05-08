@@ -17,19 +17,31 @@ if(isset($_POST['viewAccount'])) {
     
     if(mysqli_num_rows($result) > 0) {
         echo "<h2 style='text-align:center'>Rent History</h2>";
+        echo "<table>";
+        echo "<tr>
+        <th> </th>
+        <th>Car</th>
+        <th>Rent Date</th>
+        <th>Days Rented</th>
+        <th>Bond Amount</th>
+        </tr>";
         while($row = mysqli_fetch_assoc($result)) {
             $filename = 'assets/cars.json';
             $data = file_get_contents($filename);
             $decoded_json = json_decode($data, true);
+            echo "<tr>";
             foreach ($decoded_json as $car) {
                 if ($row['car_id'] == $car['Car_ID']) {
-                    echo "<img style='height:150px' src='assets/images/car_images/". $car['Image'] ."'>";
-                    echo "<h4> ". $car['Name'] ." (" . $car['Year'] .")</h4>";
+                    echo "<td><img style='height:150px' src='assets/images/car_images/". $car['Image'] ."'></td>";
+                    echo "<td><h4> ". $car['Name'] ." (" . $car['Year'] .")</h4></td>";
                 }
             }
-            echo "Days Rented: " . $row['rent_days'] . "<br>";
-            echo "Bond: $" . $row['bond_amount'] . "<br>";
+            echo "<td>" . $row['rent_date'] . "<br></td>";
+            echo "<td>" . $row['rent_days'] . "<br></td>";
+            echo "<td>" . $row['bond_amount'] . "<br></td>";
+            echo "</tr>";
         }
+        echo "</table>";
     } else {
         ?>
         <h2 style="text-align:center">No Results</h2>
@@ -40,6 +52,6 @@ if(isset($_POST['viewAccount'])) {
         <?php
     }
 }
-echo "</div>;";
-echo "</div>;";
+echo "</div>";
+echo "</div>";
 include 'includes/footer.php';

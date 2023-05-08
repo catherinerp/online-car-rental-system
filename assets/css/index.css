@@ -140,11 +140,47 @@
     max-width: 30%;
 }
 
+.image-container {
+    position: relative;
+}
+
 .car-image {
     width: 260px;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    display: block;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
 }
+
+.image-middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .image-container:hover .car-image {
+    opacity: 0.3;
+  }
+  
+  .image-container:hover .image-middle {
+    opacity: 1;
+  }
+
+  .image-link {
+    background-color: #ffd100;
+    color: black;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 8px;
+  }
 
 .car-view {
     background-color: #ffffff;
@@ -217,3 +253,23 @@ a .hide-link {
     cursor: pointer;
     text-decoration: none;
 }
+
+/** Table CSs **/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
