@@ -77,63 +77,71 @@ if (isset($_GET['sort_mileage'])) {
 ?>
 
 <div class="column-right">
-        <div class="car-grid"></br>
-        <h1 style="text-align:center; padding:5px;">Filtered Results</h1>
         <?php
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);
         $i = 0;
-        foreach ($filtered_array as $car) {
-            if ($i % 3 == 0) {
-                echo '<div class="car-row">';
-            }
-            
-            $car_id = $car['Car_ID'];
-            $car_name = $car['Name'];
-            $car_model = $car['Model'];
-            $car_make = $car['Make'];
-            $car_mileage = number_format($car['Mileage']);
-            $car_year = $car['Year'];
-            $car_availability = $car['Availability'];
-            $car_price = number_format((float)$car['Price_per_day'], 2, '.', '');
-            $car_fuel = $car['Fuel'];
-            $car_transmission = $car['Transmission_type'];
-            $car_seats = $car['Seats'];
-            $car_bodytype = $car['Body_type'];
-            $car_image = $car['Image'];
-            ?>
-            <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
-            <div class="car">
-                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img><br><br>
-                <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
-                <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
-                <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
-                <span class="car-price">$<?php echo $car_price;?>/day</span><br>
+        if (empty($filtered_array)) {
+            echo "<div class='column-right'>";
+            echo "<h3 style='text-align:center'>Sorry! None of our cars fit your critera, please try again.</h3>";
+            echo "</div>";
+        } else {
+            foreach ($filtered_array as $car) {
+                ?>
+                <div class="car-grid"></br>
+                <h1 style="text-align:center; padding:5px;">Filtered Results</h1>
                 <?php
-                if ($car_availability == false) {
-                    ?>
-                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey" onclick="unavailableAlert()">
-                    <i class="fa fa-question-circle-o"></i> Unavailable</button>
-                <?php
-                } else {
-                    ?>
-                    <form action="addToCart.php" method="post">
-                    <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
-                        <button class="add-cart-btn" type='submit" id='btn' name="addToCart">
-                            <i class="fa fa-cart-arrow-down"></i> Rent
-                        </button>
-                    </form>
-                <?php
+                if ($i % 3 == 0) {
+                    echo '<div class="car-row">';
                 }
-            echo "</div>";
-            echo "</a>";
-            $i++;
-            if ($i % 3 == 0) {
-                echo "</div>\n";
+                
+                $car_id = $car['Car_ID'];
+                $car_name = $car['Name'];
+                $car_model = $car['Model'];
+                $car_make = $car['Make'];
+                $car_mileage = number_format($car['Mileage']);
+                $car_year = $car['Year'];
+                $car_availability = $car['Availability'];
+                $car_price = number_format((float)$car['Price_per_day'], 2, '.', '');
+                $car_fuel = $car['Fuel'];
+                $car_transmission = $car['Transmission_type'];
+                $car_seats = $car['Seats'];
+                $car_bodytype = $car['Body_type'];
+                $car_image = $car['Image'];
+                ?>
+                <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
+                <div class="car">
+                    <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img><br><br>
+                    <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
+                    <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
+                    <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
+                    <span class="car-price">$<?php echo $car_price;?>/day</span><br>
+                    <?php
+                    if ($car_availability == false) {
+                        ?>
+                        <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey" onclick="unavailableAlert()">
+                        <i class="fa fa-question-circle-o"></i> Unavailable</button>
+                    <?php
+                    } else {
+                        ?>
+                        <form action="addToCart.php" method="post">
+                        <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
+                            <button class="add-cart-btn" type='submit" id='btn' name="addToCart">
+                                <i class="fa fa-cart-arrow-down"></i> Rent
+                            </button>
+                        </form>
+                    <?php
+                    }
+                echo "</div>";
+                echo "</a>";
+                $i++;
+                if ($i % 3 == 0) {
+                    echo "</div>\n";
+                }
             }
-        }
-        if ($i % 3 != 0) {
+            if ($i % 3 != 0) {
+                echo "</div>";
+            }
             echo "</div>";
         }
-        echo "</div>";
