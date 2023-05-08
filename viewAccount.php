@@ -19,7 +19,7 @@ if(isset($_POST['viewAccount'])) {
         echo "<h2 style='text-align:center'>Rent History</h2>";
         echo "<table>";
         echo "<tr>
-        <th> </th>
+        <th>Rental ID</th>
         <th>Car</th>
         <th>Rent Date</th>
         <th>Days Rented</th>
@@ -30,10 +30,10 @@ if(isset($_POST['viewAccount'])) {
             $data = file_get_contents($filename);
             $decoded_json = json_decode($data, true);
             echo "<tr>";
+            echo "<td>" . $row['rent_id'] . "</td>";
             foreach ($decoded_json as $car) {
                 if ($row['car_id'] == $car['Car_ID']) {
-                    echo "<td><img style='height:150px' src='assets/images/car_images/". $car['Image'] ."'></td>";
-                    echo "<td><h4> ". $car['Name'] ." (" . $car['Year'] .")</h4></td>";
+                    echo "<td>". $car['Name'] ." (" . $car['Year'] .")</td>";
                 }
             }
             echo "<td>" . $row['rent_date'] . "<br></td>";
