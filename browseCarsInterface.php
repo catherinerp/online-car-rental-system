@@ -28,9 +28,18 @@
             $car_bodytype = $car['Body_type'];
             $car_image = $car['Image'];
             ?>
-            <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
             <div class="car">
-                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img><br><br>
+                <div class="image-container">
+                    <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img>
+                    <div class="image-middle">
+                    <a style="text-decoration:none; color:black;" href="viewProduct.php?car_id=<?php echo $car_id;?>">
+                        <div class="image-link">
+                            Details
+                        </div>
+                        </a>
+                    </div>    
+                </div>      
+                <br><br>
                 <span class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
                 <span class="car-bodytype"><?php echo $car_bodytype;?></span><br>
                 <span class="car-bodytype"><?php echo $car_mileage;?>km</span><br>
@@ -38,7 +47,7 @@
                 <?php
                 if ($car_availability == false) {
                     ?>
-                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey" onclick="unavailableAlert()">
+                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey;" onclick="unavailableAlert()">
                     <i class="fa fa-question-circle-o"></i> Unavailable</button>
                 <?php
                 } else {
@@ -52,7 +61,6 @@
                 <?php
                 }
             echo "</div>";
-            echo "</a>";
             $i++;
             if ($i % 3 == 0) {
                 echo "</div>\n";
