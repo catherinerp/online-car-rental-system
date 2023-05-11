@@ -21,7 +21,7 @@
         "Model": "Civic",
         "Mileage": "30000",
         "Year": "2019",
-        "Availability": true,
+        "Availability": false,
         "Price_per_day": "45.00",
         "Fuel": "Gasoline",
         "Transmission_type": "Manual",

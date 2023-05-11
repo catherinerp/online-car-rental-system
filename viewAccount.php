@@ -1,5 +1,7 @@
 <?php
 include 'includes/header.php';
+include 'removeBooking.php';
+
 echo "<div class='main-container'>";
 echo "<div class='cart-container'>";
 
@@ -12,13 +14,14 @@ if(isset($_POST['viewAccount'])) {
     include 'includes/dbConfig.php';
     $email = $_POST['email'];
     
-    $query = "SELECT * FROM renting_history WHERE user_email = '$email'";
+    $query = "SELECT * FROM renting_history WHERE user_email = '$email' ORDER BY rent_id ASC";
     $result = mysqli_query($conn, $query);
     
     if(mysqli_num_rows($result) > 0) {
         echo "<h2 style='text-align:center'>Rent History</h2>";
         echo "<table>";
         echo "<tr>
+        <th> </th>
         <th>Rental ID</th>
         <th>Car</th>
         <th>Rent Date</th>
@@ -30,6 +33,13 @@ if(isset($_POST['viewAccount'])) {
             $data = file_get_contents($filename);
             $decoded_json = json_decode($data, true);
             echo "<tr>";
+            echo "<td>
+            <form method='get'>
+                <button type='submit' class='remove-item-btn' value='". $row['rent_id'] ."' name='removeBooking' onclick='return confirmDelete()'>
+                    <i class='fa fa-remove' style='font-size:28px'></i>
+                </button>
+            </form>
+            </td>";
             echo "<td>" . $row['rent_id'] . "</td>";
             foreach ($decoded_json as $car) {
                 if ($row['car_id'] == $car['Car_ID']) {
@@ -54,4 +64,11 @@ if(isset($_POST['viewAccount'])) {
 }
 echo "</div>";
 echo "</div>";
-include 'includes/footer.php';
+?>
+<body>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to remove this item?");
+    }
+</script>
+</html>
