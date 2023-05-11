@@ -35,7 +35,7 @@ if(isset($_POST['viewAccount'])) {
             echo "<tr>";
             echo "<td>
             <form action='removeBooking.php' method='post'>
-                <input type='hidden' name='updateJson' value='". $row['car_id'] ."'>
+                <input type='hidden' name='updateAvailability' value='". $row['car_id'] ."'>
                 <button type='submit' class='remove-item-btn' value='". $row['rent_id'] ."' name='removeBooking' onclick='return confirmDelete()'>
                     <i class='fa fa-remove' style='font-size:28px'></i>
                 </button>

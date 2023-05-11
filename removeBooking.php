@@ -4,7 +4,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-function updateJson($car_id) {
+function updateAvailability($car_id) {
     $filename = 'assets/cars.json';
     $data = file_get_contents($filename);
     $decoded_json = json_decode($data, true);
@@ -36,8 +36,8 @@ function removeBooking($rent_id) {
 
 if (isset($_POST['removeBooking'])) {
     $rent_id = $_POST['removeBooking'];
-    $car_id = $_POST['updateJson'];
-    updateJson($car_id);
+    $car_id = $_POST['updateAvailability'];
+    updateAvailability($car_id);
     removeBooking($rent_id);
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
