@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="fullname" name="fullname" placeholder="E.g. Jane Doe">
             <span class="required"><?php echo $fullnameErr;?></span>
             </br>
-            <label for="email">Email <span class="required">*</span></label></br>
+            <label for="email">Email Address<span class="required">*</span></label></br>
             <input type="text" id="email" name="email" placeholder="E.g. jane@email.com">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
@@ -190,13 +190,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="required"><?php echo $addressErr;?></span>
             </br>
             <label for="state">State <span class="required">*</span></label></br>
-            <input type="text" id="state" name="state" placeholder="State">
+            <select name="state" id="state">
+              <option value="" disabled selected>Select State</option>
+              <option value="New South Wales">New South Wales</option>
+              <option value="South Australia">South Australia</option>
+              <option value="Queensland">Queensland</option>
+              <option value="Tasmania">Tasmania</option>
+              <option value="Northern Territory">Northern Territory</option>
+              <option value="Australian Capital Territory">Australian Capital Territory</option>
+              <option value="Western Australia">Western Australia</option>
+              <option value="Victoria">Victoria</option>
             <span class="required"><?php echo $stateErr;?></span>
             </br>
+          </br>
             <label for="country">Country <span class="required">*</span></label></br>
             <input type="text" id="country" name="country" placeholder="Country">
             <span class="required"><?php echo $stateErr;?></span>    
-            </br>
+          </br>
             <hr>
               <h3>Total</h3>
               <input style="float:right" class="add-cart-btn" type="submit" name="submit" value="Place Order"></input>
