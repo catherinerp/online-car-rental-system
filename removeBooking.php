@@ -3,30 +3,43 @@
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+
+function updateJson($car_id) {
+    $filename = 'assets/cars.json';
+    $data = file_get_contents($filename);
+    $decoded_json = json_decode($data, true);
+
+    foreach ($decoded_json as &$car) {
+        if ($car['Car_ID'] == $car_id) {
+            $car['Availability'] = true;
+            break;
+        }
+    }
+
+    $data = json_encode($decoded_json, JSON_PRETTY_PRINT);
+    file_put_contents($filename, $data);
+}
 function removeBooking($rent_id) {
     include 'includes/dbConfig.php';
     $stmt = $conn->prepare("DELETE FROM renting_history WHERE rent_id = ?");
     $stmt->bind_param("i", $rent_id);
 
-    // Execute the delete statement
     if ($stmt->execute()) {
-        // Success! Row deleted.
         echo "Booking removed successfully.";
     } else {
-        // Error occurred.
         echo "Error: ".$stmt->error;
     }
 
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
 
-if (isset($_GET['removeBooking'])) {
-    print $rent_id;
-    $rent_id = $_GET['removeBooking'];
+if (isset($_POST['removeBooking'])) {
+    $rent_id = $_POST['removeBooking'];
+    $car_id = $_POST['updateJson'];
+    updateJson($car_id);
     removeBooking($rent_id);
-    header("Location: ".$_SERVER['PHP_SELF']);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
 ?>
