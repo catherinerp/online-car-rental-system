@@ -61,7 +61,7 @@ $decoded_json = json_decode($data, true);
                 echo "</td>";
                 echo "
                 <td><form method='get'>
-                <button type='submit' class='remove-item-btn' value='$car_id' name='removeCartItem' onclick='return confirm('Are you sure you want to remove this item?')'>
+                <button type='submit' class='remove-item-btn' value='$car_id' name='removeCartItem' onclick='return confirmDelete()'>
                     <i class='fa fa-remove' style='font-size:28px'></i>
                 </button>
                 </td></form>";
@@ -78,7 +78,7 @@ $decoded_json = json_decode($data, true);
             <p><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
             $<?php echo $total_price;?>/day</p>
             <form method="get">
-                    <button class="add-cart-btn" type="submit" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
+                    <button class="add-cart-btn" type="submit" onclick="return confirmEmpty()" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
             <form method="get">
                 <button style="float:right" class="add-cart-btn" type="submit" name="goHome">Go Home</button>
@@ -90,4 +90,13 @@ $decoded_json = json_decode($data, true);
         ?>
     </div>
 </div>
-<?php include 'includes/footer.php'?>
+</body>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to remove this car?");
+    }
+    function confirmEmpty() {
+        return confirm("Are you sure you want to empty your cart?");
+    }
+</script>
+    </html>

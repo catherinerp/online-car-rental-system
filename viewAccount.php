@@ -65,10 +65,10 @@ if(isset($_POST['viewAccount'])) {
 echo "</div>";
 echo "</div>";
 ?>
-<body>
+</body>
 <script>
     function confirmDelete() {
-        return confirm("Are you sure you want to remove this item?");
+        return confirm("Are you sure you want to cancel your booking?");
     }
 </script>
 </html>
