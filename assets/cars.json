@@ -216,7 +216,7 @@
         "Model": "Civic",
         "Mileage": "25000",
         "Year": "2021",
-        "Availability": false,
+        "Availability": true,
         "Price_per_day": "55",
         "Fuel": "Gasoline",
         "Transmission_type": "Automatic",

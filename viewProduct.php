@@ -38,7 +38,7 @@ foreach ($cars as $car) {
             padding: 50px;
             width: 50%;
             ">
-                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image" style="width: 300px;"></img><br><br>
+                <img src="assets/images/car_images/<?php echo $car_image;?>" alt="Image of<?php echo $car_name;?>" class="car-image"></img><br><br>
                 <span style="font-size: 28px;"class="car-name"><?php echo $car_name;?> (<?php echo $car_year;?>)</span><br>
                 <span class="car-price">$<?php echo $car_price;?>/day</span><br>
                 <p>

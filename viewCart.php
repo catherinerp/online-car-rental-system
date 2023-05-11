@@ -83,7 +83,7 @@ $decoded_json = json_decode($data, true);
             <form method="get">
                 <button style="float:right" class="add-cart-btn" type="submit" name="goHome">Go Home</button>
             </form>
-            <a class="add-cart-btn" type="button" href="checkout.php" style="float:right">Checkout</a>
+                <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:white">Checkout</a>
             </div>
         <?php    
         }
