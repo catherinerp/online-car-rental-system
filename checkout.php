@@ -1,175 +1,169 @@
 <?php include 'includes/cartHeader.php';?>
 <div class="main-container">
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
-$firstnameErr = $surnameErr = $emailErr = $phoneErr = $addressErr = $cityErr = $stateErr = $postcodeErr = $countryErr = "";
-$firstnameIsValid = $surnameIsValid = $emailIsValid = $phoneIsValid = $addressIsValid = $cityIsValid = $stateIsValid = $postcodeIsValid = $countryIsValid = false;
-$firstname = $surname = $email = $phone = $address = $city = $state = $postcode = $country = "";
+$firstnameErr = $surnameErr = $emailErr = $phoneErr = $addressErr = $cityErr = $stateErr = $postcodeErr = $countryErr = $paymentErr =  "";
+$firstnameIsValid = $surnameIsValid = $emailIsValid = $phoneIsValid = $addressIsValid = $cityIsValid = $stateIsValid = $postcodeIsValid = $countryIsValid = $paymentIsValid = false;
+$firstname = $surname = $email = $phone = $address = $city = $state = $postcode = $country = $payment = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["firstname"])) {
-        $firstnameErr = "Full name is invalid";
-      } else {
-        $firstname = test_input($_POST["firstname"]);
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$firstname)) {
-          $firstnameErr = "Only letters and white space allowed";
-        } else {
-            $firstnameIsValid = true;
-        }
+  if (empty($_POST["firstname"])) {
+    $firstnameErr = "Full name is invalid";
+  } else {
+    $firstname = test_input($_POST["firstname"]);
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$firstname)) {
+      $firstnameErr = "Only letters and white space allowed";
+    } else {
+      $firstnameIsValid = true;
       }
-      if (empty($_POST["surname"])) {
-        $surnameErr = "Surname is invalid";
-      } else {
-        $surname = test_input($_POST["surname"]);
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$surname)) {
-          $surnameErr = "Only letters and white space allowed";
-        } else {
-            $surnameIsValid = true;
-        }
-      }
-    if (empty($_POST["email"])) {
+  }
+  if (empty($_POST["surname"])) {
+    $surnameErr = "Surname is invalid";
+  } else {
+    $surname = test_input($_POST["surname"]);
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$surname)) {
+      $surnameErr = "Only letters and white space allowed";
+    } else {
+      $surnameIsValid = true;
+    }
+  }
+  if (empty($_POST["email"])) {
     $emailErr = "Email is invalid";
+  } else {
+    $email = test_input($_POST["email"]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
     } else {
-        $email = test_input($_POST["email"]);
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
-        } else {
-            $emailIsValid = true;
-        }
+      $emailIsValid = true;
     }
-    if (empty($_POST["phone"])) {
-      $phoneErr = "Phone number is invalid";
+  }
+  if (empty($_POST["phone"])) {
+    $phoneErr = "Phone number is invalid";
+  } else {
+    $phone = test_input($_POST["phone"]);
+    if (!preg_match("/^\d{1,10}$/",$phone)) {
+      $phoneErr = "Phone number must be 10 digits";
     } else {
-        $phone = test_input($_POST["phone"]);
-      if (!preg_match("/^\d{1,10}$/",$phone)) {
-        $phoneErr = "Phone number must be 10 digits";
-      } else {
-        $phoneIsValid = true;
-      }
+      $phoneIsValid = true;
     }
-    if (empty($_POST["address"])) {
-        $addressErr = "Address is invalid";
+  }
+  if (empty($_POST["address"])) {
+    $addressErr = "Address is invalid";
+  } else {
+    $address = test_input($_POST["address"]);
+    $addressIsValid = true;
+  }
+  if (empty($_POST["city"])) {
+    $cityErr = "City is invalid";
+  } else {
+    $city = test_input($_POST["city"]);
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$city)) {
+      $cityErr = "Only letters and white space allowed";
     } else {
-      $address = test_input($_POST["address"]);
-      $addressIsValid = true;
+      $cityIsValid = true;
     }
-    if (empty($_POST["city"])) {
-      $cityErr = "City is invalid";
+  } 
+  if (empty($_POST["state"]) || $_POST["state"] == "") {
+    $stateErr = "Please select a state";
+  } else {
+    $stateIsValid = true;
+  }      
+  if (empty($_POST["postcode"])) {
+    $postcodeErr = "Postcode is invalid";
+  } else {
+    $postcode = test_input($_POST["postcode"]);
+    if (!preg_match("/^\d{1,6}$/", $postcode)) {
+      $postcodeErr = "Only numbers and up to 6 digits allowed";
     } else {
-      $city = test_input($_POST["city"]);
-      if (!preg_match("/^[a-zA-Z-' ]*$/",$city)) {
-        $cityErr = "Only letters and white space allowed";
-      } else {
-          $cityIsValid = true;
-      }
-    } 
-    if (empty($_POST["state"]) || $_POST["state"] == "") {
-        $stateErr = "Please select a state";
+      $postcodeIsValid = true;
+    }
+  }
+  if (empty($_POST["country"])) {
+    $countryErr = "Country is invalid";
+  } else {
+    $country = test_input($_POST["country"]);
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$country)) {
+      $countryErr = "Only letters and white space allowed";
     } else {
-      $state = test_input($_POST["state"]);
-      if (!preg_match("/^[a-zA-Z-' ]*$/", $state)) {
-          $stateErr = "Only letters and white space allowed";
-      } else {
-              $stateIsValid = true;
-      }
-    }      
-      if (empty($_POST["postcode"])) {
-        $postcodeErr = "Postcode is invalid";
-      } else {
-        $postcode = test_input($_POST["postcode"]);
-        if (!preg_match("/^\d{1,6}$/", $postcode)) {
-          $postcodeErr = "Only numbers and up to 6 digits allowed";
-        } else {
-            $postcodeIsValid = true;
-        }
-      }
-      if (empty($_POST["country"])) {
-        $countryErr = "Country is invalid";
-      } else {
-        $country = test_input($_POST["country"]);
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$country)) {
-          $countryErr = "Only letters and white space allowed";
-        } else {
-            $countryIsValid = true;
-        }
-      }
-      if ($firstnameIsValid && $surnameIsValid && $emailIsValid && $phoneIsValid && $addressIsValid && $stateIsValid && $postcodeIsValid && $countryIsValid) {
-        $filename = 'assets/cars.json';
-        $data = file_get_contents($filename);
-        $decoded_json = json_decode($data, true);
-  
-        $cart_has_available_items = false;
-  
-        foreach ($_SESSION['cart'] as $car_id => $car) {
+      $countryIsValid = true;
+    }
+  }
+  if (empty($_POST["payment"]) || $_POST["payment"] == "") {
+    $paymentErr = "Please select a payment method";
+  } else {
+    $paymentIsValid = true;
+  }
+  if ($firstnameIsValid && $surnameIsValid && $emailIsValid && $phoneIsValid && $addressIsValid && $stateIsValid && $postcodeIsValid && $countryIsValid && $paymentIsValid) {
+    $filename = 'assets/cars.json';
+    $data = file_get_contents($filename);
+    $decoded_json = json_decode($data, true);
+    $cart_has_available_items = false;
+
+    foreach ($_SESSION['cart'] as $car_id => $car) {
+    $car_availability = $car['car_availability'];
+      if ( $car_availability == true ) {
+        echo "car_availability is being reached";
+        $car_availability == false;
         $car_availability = $car['car_availability'];
-          if ( $car_availability == true ) {
-            echo "car_availability is being reached";
-            $car_availability == false;
-            $car_availability = $car['car_availability'];
-            if ($car_availability == true) {
-                $cart_has_available_items = true;
-                break;
-            }
-          }
+        if ($car_availability == true) {
+          $cart_has_available_items = true;
+          break;
         }
-        foreach ($_SESSION['cart'] as $car_id => $car) {
-          if ($cart_has_available_items) {
-            echo "cart_has_available_items is being reached";
-            $car_availability = $car['car_availability'];
-            if (isset($decoded_json[$car_id])) {
-              $decoded_json[$car_id]['Availability'] = false;
-            }
-          }
-          $car_id = $car['car_id'];
-          $car_price = $car['car_price'];
-          $rent_days = $car['quantity'];
-          $bond_amount = $car_price * $rent_days;
-          $email = $_POST['email'];
-          $rent_date = date('Y/m/d');
-
-          include 'includes/dbConfig.php';
-      
-          $sql = "SELECT MAX(rent_id) AS max_rent_id FROM renting_history";
-          $result = mysqli_query($conn, $sql);
-      
-          if (!$result) {
-              die('Error: ' . mysqli_error($conn));
-          }
-      
-          $row = mysqli_fetch_assoc($result);
-          $rent_id = $row['max_rent_id'] + 1;
-          mysqli_free_result($result);
-          $stmt = mysqli_prepare($conn, "INSERT INTO renting_history (rent_id, car_id, user_email, rent_date, rent_days, bond_amount) VALUES (?, ?, ?, ?, ?, ?)");
-          mysqli_stmt_bind_param($stmt, "iisssi", $rent_id, $car_id, $email, $rent_date, $rent_days, $bond_amount);
-          mysqli_stmt_execute($stmt);
-          mysqli_stmt_close($stmt);
-        }
-        $new_json = json_encode($decoded_json, JSON_PRETTY_PRINT);
-        file_put_contents('assets/cars.json', $new_json);
-
-        header("Location: confirmOrder.php?firstname=$firstname&surname=$surname&email=$email&phone=$phone&address=$address&city=$city&state=$state&postcode=$postcode&country=$country");
-        exit();
       }
+    }
+    foreach ($_SESSION['cart'] as $car_id => $car) {
+      if ($cart_has_available_items) {
+      echo "cart_has_available_items is being reached";
+      $car_availability = $car['car_availability'];
+      if (isset($decoded_json[$car_id])) {
+          $decoded_json[$car_id]['Availability'] = false;
+        }
+      }
+      $car_id = $car['car_id'];
+      $car_price = $car['car_price'];
+      $rent_days = $car['quantity'];
+      $bond_amount = $car_price * $rent_days;
+      $email = $_POST['email'];
+      $rent_date = date('Y/m/d');
+
+      include 'includes/dbConfig.php';
+      $sql = "SELECT MAX(rent_id) AS max_rent_id FROM renting_history";
+      $result = mysqli_query($conn, $sql);
+      
+      if (!$result) {
+        die('Error: ' . mysqli_error($conn));
+      }
+      
+      $row = mysqli_fetch_assoc($result);
+      $rent_id = $row['max_rent_id'] + 1;
+      mysqli_free_result($result);
+      $stmt = mysqli_prepare($conn, "INSERT INTO renting_history (rent_id, car_id, user_email, rent_date, rent_days, bond_amount) VALUES (?, ?, ?, ?, ?, ?)");
+      mysqli_stmt_bind_param($stmt, "iisssi", $rent_id, $car_id, $email, $rent_date, $rent_days, $bond_amount);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
+    }
+    $new_json = json_encode($decoded_json, JSON_PRETTY_PRINT);
+    file_put_contents('assets/cars.json', $new_json);
+
+    header("Location: confirmOrder.php?firstname=$firstname&surname=$surname&email=$email&phone=$phone&address=$address&city=$city&state=$state&postcode=$postcode&country=$country&payment=$payment");
+    exit();
   }
+}
 
-  function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 
-  $filename = 'assets/cars.json';
-  $data = file_get_contents($filename);
-  $decoded_json = json_decode($data, true);
+$filename = 'assets/cars.json';
+$data = file_get_contents($filename);
+$decoded_json = json_decode($data, true);
 
-  ?>
+?>
 
     <div class="cart-container">
         <?php
@@ -215,31 +209,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p style="float:right;"><span class="required">*</span> Required field</p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="firstname">First Name <span class="required">*</span></label></br>
-            <input type="text" id="firstname" name="firstname" style="width:202.5px" placeholder="First Name">
+            <input type="text" id="firstname" name="firstname" style="height:30px; width:202.5px" placeholder="First Name">
             <span class="required"><?php echo $firstnameErr;?></span>
             </br>
             <label for="surname">Surname <span class="required">*</span></label></br>
-            <input type="text" id="surname" name="surname" style="width:202.5px" placeholder="Surname">
+            <input type="text" id="surname" name="surname" style="height:30px; width:202.5px" placeholder="Surname">
             <span class="required"><?php echo $surnameErr;?></span>
             </br>
             <label for="email">Email Address<span class="required">*</span></label></br>
-            <input type="text" id="email" name="email" style="width:202.5px" placeholder="Email Address">
+            <input type="text" id="email" name="email" style="height:30px; width:202.5px" placeholder="Email Address">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
             <label for="phone">Phone<span class="required">*</span></label></br>
-            <input type="tel" id="phone" name="phone" style="width:202.5px" placeholder="Phone">
+            <input type="tel" id="phone" name="phone" style="height:30px; width:202.5px" placeholder="Phone">
             <span class="required"><?php echo $phoneErr;?></span>
             </br>
             <label for="address">Address <span class="required">*</span></label></br>
-            <input type="text" id="address" name="address" style="width:202.5px" placeholder="Address">
+            <input type="text" id="address" name="address" style="height:30px; width:202.5px" placeholder="Address">
             <span class="required"><?php echo $addressErr;?></span>
             </br>
             <label for="city">City <span class="required">*</span></label></br>
-            <input type="text" id="city" name="city" style="width:202.5px" placeholder="City">
+            <input type="text" id="city" name="city" style="height:30px; width:202.5px" placeholder="City">
             <span class="required"><?php echo $cityErr;?></span>
             </br>
             <label for="state">State <span class="required">*</span></label></br>
-            <select name="state" id="state" style="height:30px">
+            <select name="state" id="state" style="height:30px; width:202.5px">
               <option value="" disabled selected>Select State</option>
               <option value="New South Wales">New South Wales</option>
               <option value="South Australia">South Australia</option>
@@ -253,12 +247,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <span class="required"><?php echo $stateErr;?></span>
           </br>
           <label for="postcode">Postcode <span class="required">*</span></label></br>
-            <input type="text" id="postcode" name="postcode" style="width:202.5px" placeholder="Postcode">
+            <input type="text" id="postcode" name="postcode" style="height:30px; width:202.5px" placeholder="Postcode">
             <span class="required"><?php echo $postcodeErr;?></span>
             </br>
             <label for="country">Country <span class="required">*</span></label></br>
-            <input type="text" id="country" name="country" style="width:202.5px" placeholder="Country">
+            <input type="text" id="country" name="country" style="height:30px; width:202.5px" placeholder="Country">
             <span class="required"><?php echo $countryErr;?></span>    
+          </br>
+          <label for="payment">Payment Method <span class="required">*</span></label></br>
+            <select name="payment" id="payment" style="height:30px; width:202.5px">
+              <option value="" disabled selected>Select Payment Method</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Cheque">Cheque</option>
+          </select>
+          <span class="required"><?php echo $paymentErr;?></span>
           </br>
             <hr>
               <h3>Total</h3>

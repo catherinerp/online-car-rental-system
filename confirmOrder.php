@@ -1,10 +1,5 @@
 <?php
-
 include 'includes/cartHeader.php';
-
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
@@ -40,6 +35,7 @@ if (empty($_SESSION['cart'])) {
     $state = $_GET['state'];
     $postcode = $_GET['postcode'];
     $country = $_GET['country'];
+    $payment = $_GET['payment'];
     ?>
     <div class="main-container">
         <div class="cart-container" style="padding: 40px; padding-bottom: 80px">
@@ -56,6 +52,7 @@ if (empty($_SESSION['cart'])) {
             <b>Email:</b> <?php echo $email?></br>
             <b>Phone:</b> <?php echo substr($phone, 0, 4) . ' ' . substr($phone, 4, 3) . ' ' . substr($phone, 7); ?></br>
             <b>Address:</b> <?php echo $address . ' ' . $city . ' ' . $state . ' ' . $postcode . ' ' . $country;?></br>
+            <b>Payment Method:</b> <?php echo $payment?></br>
         </p>
             <h2>Order Details</h2></br>
             <table style="width:100%">
