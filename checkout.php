@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $new_json = json_encode($decoded_json, JSON_PRETTY_PRINT);
         file_put_contents('assets/cars.json', $new_json);
 
-        header("Location: confirmOrder.php?firstname=$firstname&surname=$surname&email=$email&phone=$phone&address=$address&state=$state&postcode=$postcode&country=$country");
+        header("Location: confirmOrder.php?firstname=$firstname&surname=$surname&email=$email&phone=$phone&address=$address&city=$city&state=$state&postcode=$postcode&country=$country");
         exit();
       }
   }

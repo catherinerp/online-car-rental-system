@@ -94,7 +94,7 @@ session_start();
     <div style="clear: both;"></div>
     <div class="topnav">
         <a href="./index.php">Home</a>
-        <a class="account-button" href="accountForm.php">Account</a>
+        <a class="account-button" href="./accountForm.php">Account</a>
         <a href="./help.php">Help</a>
     </div>
 </div>

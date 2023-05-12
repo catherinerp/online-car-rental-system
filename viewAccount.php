@@ -1,12 +1,11 @@
 <?php
 include 'includes/header.php';
-include 'removeBooking.php';
 
 echo "<div class='main-container'>";
 echo "<div class='cart-container' style='padding: 40px;'>";
 
 if (isset($_GET['goBack'])) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: accountForm.php');
     exit();
 }
 

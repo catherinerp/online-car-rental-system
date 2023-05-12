@@ -1,8 +1,14 @@
 <?php
-
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+include 'includes/header.php';
+?>
+<div class="main-container">
+    <div class="cart-container" style="padding:40px; padding-bottom:80px;">
+        </br>
+<?php
+if (isset($_GET['goBack'])) {
+    header("Location: ./accountForm.php");
+    exit();
+}
 
 function updateAvailability($car_id) {
     $filename = 'assets/cars.json';
@@ -23,9 +29,8 @@ function removeBooking($rent_id) {
     include 'includes/dbConfig.php';
     $stmt = $conn->prepare("DELETE FROM renting_history WHERE rent_id = ?");
     $stmt->bind_param("i", $rent_id);
-
     if ($stmt->execute()) {
-        echo "Booking removed successfully.";
+        echo "<h2 style='text-align:center'>Your booking #$rent_id was cancelled successfully.</h2>";
     } else {
         echo "Error: ".$stmt->error;
     }
@@ -39,7 +44,11 @@ if (isset($_POST['removeBooking'])) {
     $car_id = $_POST['updateAvailability'];
     updateAvailability($car_id);
     removeBooking($rent_id);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit();
 }
 ?>
+        <form method="get">
+            <button style="float:right" class="add-cart-btn" type="submit" name="goBack">Go Back</button>
+        </form>
+    </div>
+</div>
+<?php include 'includes/footer.php'; ?>
