@@ -55,7 +55,6 @@ foreach ($cars as $car) {
                 <b>Seats:</b> <?php echo $car_seats;?></br>
                 </p>
                 <form action="addToCart.php" method="post">
-                    <input type="hidden" name="car_name" value="<?php echo $car_name;?>">
                     <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
                     <?php
                     if ($car_availability== true) {

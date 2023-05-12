@@ -14,10 +14,6 @@ if (!isset($_SESSION['cart'])) {
 include 'removeCartItem.php';
 include 'emptyCart.php';
 
-if (isset($_GET['goHome'])) {
-    header("Location: ./index.php");
-    exit();
-}
 
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
@@ -26,7 +22,7 @@ $decoded_json = json_decode($data, true);
 ?>
 <div class="main-container">
 
-    <div class="cart-container" style="padding: 40px; padding-bottom: 80px">
+    <div class="cart-container" style="padding: 40px;">
         <?php
         if (empty($_SESSION['cart'])) {
             echo "<h2 style='text-align:center'>Your cart is empty.</h2>";
@@ -74,9 +70,9 @@ $decoded_json = json_decode($data, true);
             </table>
             <hr>
             <h3>Total</h3>
-                <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:black; background-color:#ffd100;">Checkout</a>
             <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i>
-            $<?php echo $total_price;?>/day</p>
+            <br>$<?php echo $total_price;?></p>
+            <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:black; background-color:#ffd100;">Checkout</a>
             <form method="get">
                     <button class="add-cart-btn" type="submit" onclick="return confirmEmpty()" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>

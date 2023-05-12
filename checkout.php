@@ -264,7 +264,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <h3>Total</h3>
               <input style="float:right" class="add-cart-btn" type="submit" name="submit" value="Place Order"></input>
               <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
-              $<?php echo $total_price;?>/day</p>
+              $<?php echo $total_price;?></p>
               
         </form>
         </div>
