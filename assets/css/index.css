@@ -141,7 +141,7 @@ body {
 
 .car-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
     margin: 20px 50px;
 }
