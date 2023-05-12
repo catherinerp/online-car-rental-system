@@ -49,11 +49,12 @@ session_start();
                                 $car_price = number_format((float)$car_price, 2, '.', '');
                                 $quantity = $car_data['quantity'];
                                 ?>
-
-                                    <img src="assets/images/car_images/<?php echo $car_image?>" style="height:50px">
-                                    <a href="viewProduct.php?id=<?php echo $car_id?>"><?php echo $row['product_name']?></a>
-                                    <span class="price text-info">$<?php echo $car_price?></span> 
-                                    <span class="count">
+                                    <br>
+                                    <img src="assets/images/car_images/<?php echo $car_image?>" style="height:50px; border-radius:8px; box-shadow:0 0 5px rgba(0, 0, 0, 0.1);">
+                                    <a style="color:gray; font-size:20px; font-weight: 700px; text-decoration:none;" href="viewProduct.php?car_id=<?php echo $car_id?>"><?php echo $car_name?></a></br>
+                                    <div style='float:right'>
+                                    <span style="font-style">$<?php echo $car_price?></span> 
+                                    <span style="font-weight:300px;"> for 
                                         <?php 
                                         echo $quantity;
                                         if ($quantity > 1) {
@@ -61,15 +62,29 @@ session_start();
                                         } else {
                                             echo " day";
                                         }?>
-                                    </span></br>
+                                    </span>
+                                    </div>
+                                    </br>
                                 <?php
                                     $total_price += $car_price * $quantity;
                             }
                             ?>
                         <hr>
-                        <p>Total: $<?php echo $total_price = number_format((float)$total_price, 2, '.', '');?></p>
-                        <a href="checkout.php" class="btn btn-primary btn-block">Checkout</a>
-                        <a href="viewCart.php" class="btn btn-primary btn-block">Cart</a>
+                        <h5>Total: $<?php echo $total_price = number_format((float)$total_price, 2, '.', '');?></h5>
+                        <a href="checkout.php"
+                        style="
+                        border: 0px;
+                        border-radius: 8px;
+                        background-color: #ffd100;
+                        color: black;
+                        " class="btn btn-primary btn-block">
+                        Checkout</a>
+                        <a href="viewCart.php" style="
+                        border: 0px;
+                        border-radius: 8px;
+                        background-color: #ffd100;
+                        color: black;
+                        " class="btn btn-primary btn-block">Cart</a>
                         </div>
                 <?php
                 }

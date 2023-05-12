@@ -4,7 +4,7 @@
 session_start();
 
 if (isset($_GET['goBack'])) {
-    header("Location: index.php");
+    header("Location: ./index.php");
     exit();
 }
 

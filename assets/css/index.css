@@ -88,6 +88,16 @@
     border-bottom-color:#fff;
 }
 
+.dropdown-cart-btns {
+    text-decoration: none;
+    background-color: #ffd100;
+    color: black;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 8px;
+    width: 100%;
+}
+
 /** BrowseCars CSS **/
 
 .column-left {

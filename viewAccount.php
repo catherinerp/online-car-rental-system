@@ -6,7 +6,7 @@ echo "<div class='main-container'>";
 echo "<div class='cart-container'>";
 
 if (isset($_GET['goBack'])) {
-    header("Location: accountForm.php");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
 
