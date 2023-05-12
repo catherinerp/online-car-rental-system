@@ -78,9 +78,6 @@ if (isset($_GET['sort_mileage'])) {
 
 <div class="column-right">
         <?php
-        ini_set('display_errors', '1');
-        ini_set('display_startup_errors', '1');
-        error_reporting(E_ALL);
         $i = 0;
         if (empty($filtered_array)) {
             echo "<div class='column-right'>";
