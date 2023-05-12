@@ -21,26 +21,18 @@ if(isset($_POST['viewAccount'])) {
         echo "<h2 style='text-align:center'>Rent History</h2>";
         echo "<table>";
         echo "<tr>
-        <th> </th>
         <th>Rental ID</th>
         <th>Car</th>
         <th>Rent Date</th>
         <th>Days Rented</th>
         <th>Bond Amount</th>
+        <th> </th>
         </tr>";
         while($row = mysqli_fetch_assoc($result)) {
             $filename = 'assets/cars.json';
             $data = file_get_contents($filename);
             $decoded_json = json_decode($data, true);
             echo "<tr>";
-            echo "<td>
-            <form action='removeBooking.php' method='post'>
-                <input type='hidden' name='updateAvailability' value='". $row['car_id'] ."'>
-                <button type='submit' class='remove-item-btn' value='". $row['rent_id'] ."' name='removeBooking' onclick='return confirmDelete()'>
-                    <i class='fa fa-remove' style='font-size:28px'></i>
-                </button>
-            </form>
-            </td>";
             echo "<td>" . $row['rent_id'] . "</td>";
             foreach ($decoded_json as $car) {
                 if ($row['car_id'] == $car['Car_ID']) {
@@ -50,6 +42,14 @@ if(isset($_POST['viewAccount'])) {
             echo "<td>" . $row['rent_date'] . "<br></td>";
             echo "<td>" . $row['rent_days'] . "<br></td>";
             echo "<td>" . $row['bond_amount'] . "<br></td>";
+            echo "<td>
+            <form action='removeBooking.php' method='post'>
+                <input type='hidden' name='updateAvailability' value='". $row['car_id'] ."'>
+                <button type='submit' class='remove-item-btn' value='". $row['rent_id'] ."' name='removeBooking' onclick='return confirmDelete()'>
+                    <i class='fa fa-remove' style='font-size:28px'></i>
+                </button>
+            </form>
+            </td>";
             echo "</tr>";
         }
         echo "</table>";

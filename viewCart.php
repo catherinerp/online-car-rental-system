@@ -69,12 +69,12 @@ $decoded_json = json_decode($data, true);
             </table>
             <hr>
             <h3>Total</h3>
-            <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
+                <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:black; background-color:#ffd100;">Checkout</a>
+            <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i>
             $<?php echo $total_price;?>/day</p>
             <form method="get">
                     <button class="add-cart-btn" type="submit" onclick="return confirmEmpty()" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
-                <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:black; background-color:#ffd100;">Checkout</a>
             </div>
         <?php    
         }

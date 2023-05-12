@@ -3,6 +3,7 @@ include 'includes/header.php';
 ?>
 <div class="main-container">
     <div class="cart-container">
+</br>
         <h1 style="text-align:center">Access Your Rent History</h1>
         <p style="padding: 20px;width: 100%;">
         Access your renting history here with your email address, no password required!<br>

@@ -4,6 +4,10 @@
     font-family: 'Tajawal', sans-serif;
 }
 
+body {
+    background-color: #eeeeee !important;
+}
+
 /** Header CSS **/
 
 .header {

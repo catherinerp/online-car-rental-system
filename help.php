@@ -1,6 +1,7 @@
 <?php include 'includes/header.php'; ?>
 <div class="main-container">
     <div class="cart-container">
+        </br>
         <h1 style="text-align:center">Welcome to Hertz-UTS!</h1>
         <p style="padding: 20px;width: 100%;">
         This is a online car rental center that allows you to browse our selection of cars
