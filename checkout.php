@@ -9,21 +9,30 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
-$fullnameErr = $emailErr = $addressErr = $stateErr = $postcodeErr = $countryErr = "";
-$nameIsValid = $emailIsValid = $addressIsValid = $stateIsValid = $postcodeIsValid = $countryIsValid = false;
-$fullname = $email = $address = $state = $postcode = $country = "";
+$firstnameErr = $surnameErr = $emailErr = $phoneErr = $addressErr = $cityErr = $stateErr = $postcodeErr = $countryErr = "";
+$firstnameIsValid = $surnameIsValid = $emailIsValid = $phoneIsValid = $addressIsValid = $cityIsValid = $stateIsValid = $postcodeIsValid = $countryIsValid = false;
+$firstname = $surname = $email = $phone = $address = $city = $state = $postcode = $country = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["fullname"])) {
-        $fullnameErr = "Full name is invalid";
+    if (empty($_POST["firstname"])) {
+        $firstnameErr = "Full name is invalid";
       } else {
-        $fullname = test_input($_POST["fullname"]);
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$fullname)) {
-          $fullnameErr = "Only letters and white space allowed";
+        $firstname = test_input($_POST["firstname"]);
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$firstname)) {
+          $firstnameErr = "Only letters and white space allowed";
         } else {
-            $nameIsValid = true;
+            $firstnameIsValid = true;
         }
       }
-
+      if (empty($_POST["surname"])) {
+        $surnameErr = "Surname is invalid";
+      } else {
+        $surname = test_input($_POST["surname"]);
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$surname)) {
+          $surnameErr = "Only letters and white space allowed";
+        } else {
+            $surnameIsValid = true;
+        }
+      }
     if (empty($_POST["email"])) {
     $emailErr = "Email is invalid";
     } else {
@@ -34,23 +43,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $emailIsValid = true;
         }
     }
-
+    if (empty($_POST["phone"])) {
+      $phoneErr = "Phone number is invalid";
+    } else {
+        $phone = test_input($_POST["phone"]);
+      if (!preg_match("/^\d{1,10}$/",$phone)) {
+        $phoneErr = "Phone number must be 10 digits";
+      } else {
+        $phoneIsValid = true;
+      }
+    }
     if (empty($_POST["address"])) {
         $addressErr = "Address is invalid";
+    } else {
+      $address = test_input($_POST["address"]);
+      $addressIsValid = true;
+    }
+    if (empty($_POST["city"])) {
+      $cityErr = "City is invalid";
+    } else {
+      $city = test_input($_POST["city"]);
+      if (!preg_match("/^[a-zA-Z-' ]*$/",$city)) {
+        $cityErr = "Only letters and white space allowed";
       } else {
-        $address = test_input($_POST["address"]);
-        $addressIsValid = true;
-        }
-      if (empty($_POST["state"]) || $_POST["state"] == "") {
-          $stateErr = "Please select a state";
+          $cityIsValid = true;
+      }
+    } 
+    if (empty($_POST["state"]) || $_POST["state"] == "") {
+        $stateErr = "Please select a state";
+    } else {
+      $state = test_input($_POST["state"]);
+      if (!preg_match("/^[a-zA-Z-' ]*$/", $state)) {
+          $stateErr = "Only letters and white space allowed";
       } else {
-          $state = test_input($_POST["state"]);
-          if (!preg_match("/^[a-zA-Z-' ]*$/", $state)) {
-              $stateErr = "Only letters and white space allowed";
-          } else {
               $stateIsValid = true;
-          }
-      }      
+      }
+    }      
       if (empty($_POST["postcode"])) {
         $postcodeErr = "Postcode is invalid";
       } else {
@@ -71,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $countryIsValid = true;
         }
       }
-      if ($nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $postcodeIsValid && $countryIsValid) {
+      if ($firstnameIsValid && $surnameIsValid && $emailIsValid && $phoneIsValid && $addressIsValid && $stateIsValid && $postcodeIsValid && $countryIsValid) {
         $filename = 'assets/cars.json';
         $data = file_get_contents($filename);
         $decoded_json = json_decode($data, true);
@@ -125,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $new_json = json_encode($decoded_json, JSON_PRETTY_PRINT);
         file_put_contents('assets/cars.json', $new_json);
 
-        header("Location: confirmOrder.php?fullname=$fullname&email=$email&address=$address&state=$state&country=$country");
+        header("Location: confirmOrder.php?firstname=$firstname&surname=$surname&email=$email&phone=$phone&address=$address&state=$state&postcode=$postcode&country=$country");
         exit();
       }
   }
@@ -183,20 +211,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             </table>
           <hr>
-        <h2 style="text-align:center">Shipping Details</h2>
+        <h2 style="text-align:center">Billing Details</h2>
         <p style="float:right;"><span class="required">*</span> Required field</p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <label for="fullname">Full Name <span class="required">*</span></label></br>
-            <input type="text" id="fullname" name="fullname" style="width:202.5px" placeholder="Full Name">
-            <span class="required"><?php echo $fullnameErr;?></span>
+            <label for="firstname">First Name <span class="required">*</span></label></br>
+            <input type="text" id="firstname" name="firstname" style="width:202.5px" placeholder="First Name">
+            <span class="required"><?php echo $firstnameErr;?></span>
+            </br>
+            <label for="surname">Surname <span class="required">*</span></label></br>
+            <input type="text" id="surname" name="surname" style="width:202.5px" placeholder="Surname">
+            <span class="required"><?php echo $surnameErr;?></span>
             </br>
             <label for="email">Email Address<span class="required">*</span></label></br>
             <input type="text" id="email" name="email" style="width:202.5px" placeholder="Email Address">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
+            <label for="phone">Phone<span class="required">*</span></label></br>
+            <input type="tel" id="phone" name="phone" style="width:202.5px" placeholder="Phone">
+            <span class="required"><?php echo $phoneErr;?></span>
+            </br>
             <label for="address">Address <span class="required">*</span></label></br>
             <input type="text" id="address" name="address" style="width:202.5px" placeholder="Address">
             <span class="required"><?php echo $addressErr;?></span>
+            </br>
+            <label for="city">City <span class="required">*</span></label></br>
+            <input type="text" id="city" name="city" style="width:202.5px" placeholder="City">
+            <span class="required"><?php echo $cityErr;?></span>
             </br>
             <label for="state">State <span class="required">*</span></label></br>
             <select name="state" id="state" style="height:30px">

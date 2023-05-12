@@ -39,7 +39,7 @@ if (isset($_POST['removeBooking'])) {
     $car_id = $_POST['updateAvailability'];
     updateAvailability($car_id);
     removeBooking($rent_id);
-    header("Location: viewAccount.php");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
 ?>

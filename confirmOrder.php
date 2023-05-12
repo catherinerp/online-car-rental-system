@@ -31,6 +31,15 @@ if (empty($_SESSION['cart'])) {
 } else {
     $total_price = 0;
     $total_quantity = 0;
+    $firstname = $_GET['firstname'];
+    $surname = $_GET['surname'];
+    $email = $_GET['email'];
+    $phone = $_GET['phone'];
+    $address = $_GET['address'];
+    $city = $_GET['city'];
+    $state = $_GET['state'];
+    $postcode = $_GET['postcode'];
+    $country = $_GET['country'];
     ?>
     <div class="main-container">
         <div class="cart-container" style="padding: 40px; padding-bottom: 80px">
@@ -39,8 +48,17 @@ if (empty($_SESSION['cart'])) {
             <p class="confirmation-order-message">
                 Your car should be available to be picked up within the hour, please wait for a
                 pick-up confirmation email before picking it up.
-            </p></br>
+            </p>
+            <hr>
+        <h2>Billing Details</h2></br>
+        <p>
+            <b>Full Name:</b> <?php echo $firstname . ' ' . $surname;?></br>
+            <b>Email:</b> <?php echo $email?></br>
+            <b>Phone:</b> <?php echo substr($phone, 0, 4) . ' ' . substr($phone, 4, 3) . ' ' . substr($phone, 7); ?></br>
+            <b>Address:</b> <?php echo $address . ' ' . $city . ' ' . $state . ' ' . $postcode . ' ' . $country;?></br>
+        </p>
             <h2>Order Details</h2></br>
+            <table style="width:100%">
         <?php
             foreach ($_SESSION['cart'] as $car_id => $car_data) {
             $car_name = $car_data['car_name'];
@@ -49,50 +67,35 @@ if (empty($_SESSION['cart'])) {
             $car_price = $car_data['car_price'];
             $quantity = $car_data['quantity'];
 
+            echo "<tr>";
+                echo "<td><img src='assets/images/car_images/$car_image' class='cart-car-image'></td>";
+                echo "<td style='font-size: 20px;'>$car_name ($car_year)</td>";
+                echo "<td><b>$$car_price/day</b></br>";
+                echo "for $quantity";
+                if ($quantity > 1) {
+                    echo " days";
+                } else {
+                    echo " day";
+                }
+                echo "</td>";
+            echo "</tr>";
             $total_quantity++;
-            $total_price += $car_price * $quantity;
-
-            $fullname = $_GET['fullname'];
-            $email = $_GET['email'];
-            $address = $_GET['address'];
-            $state = $_GET['state'];
-            $country = $_GET['country'];
-            ?>
-            
-            <?php
-            echo "<tr>
-                    <td>
-                    <div class='cart-item-image'>
-                        <img src='assets/images/car_images/$car_image' style='width:75px; height:75px'>\t
-                    </div>
-                    <div class='cart-item-name'>
-                    $car_name
-                    </div>
-                    </td>
-                    <td>
-                    \t$quantity\t
-                    </td>
-                </tr>\t";
-                $total_price = number_format((float)$total_price, 2, '.', '');
+                $total_price += $car_price * $quantity;
         }
+        $total_price = number_format((float)$total_price, 2, '.', '');
         foreach ($_SESSION['cart'] as $car_id => $quantity) {
             $_SESSION['cart'][$car_id] = 0;
             unset($_SESSION['cart'][$car_id]);
         }
         ?>
         </table>
+        <hr>
+            <h3>Total</h3>
+            <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
+            $<?php echo $total_price;?>/day</p>
         <form method="get">
             <button style='float:right' class='add-cart-btn' type='submit' name='emptyCart'>Go Home</button>
         </form>
-        <h2>Shipping Details</h2></br>
-        <p>
-            <b>Full Name:</b> <?php echo $fullname?></br>
-            <b>Email:</b> <?php echo $email?></br>
-            <b>Address:</b> <?php echo $address?></br>
-            <b>State:</b> <?php echo $state?></br>
-            <b>Country:</b> <?php echo $country?></br>
-        </p>
-        
     </div>
 </div>
     <?php
