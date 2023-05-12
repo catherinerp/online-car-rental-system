@@ -2,10 +2,10 @@
 include 'includes/header.php'; 
 ?>
 <div class="main-container">
-    <div class="cart-container">
+    <div class="cart-container" style="padding:40px;">
         </br>
         <h1 style="text-align:center">Access Your Rent History</h1>
-        <p style="margin:0 auto; padding:20px; width:100%;">
+        <p style="text-align:center; padding:20px; width:100%;">
         Access your renting history here with your email address, no password required!<br>
         Simply type in the email address associated with your rental bookings.
         <p>

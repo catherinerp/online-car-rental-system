@@ -89,7 +89,7 @@ if (empty($_SESSION['cart'])) {
         <hr>
             <h3>Total</h3>
             <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
-            $<?php echo $total_price;?>/day</p>
+            $<?php echo $total_price;?></p>
         <form method="get">
             <button style='float:right' class='add-cart-btn' type='submit' name='emptyCart'>Go Home</button>
         </form>

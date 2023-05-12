@@ -68,7 +68,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["state"]) || $_POST["state"] == "") {
     $stateErr = "Please select a state";
   } else {
-    $stateIsValid = true;
+    $state = test_input($_POST["state"]);
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$state)) {
+      $stateErr = "Only letters and white space allowed";
+    } else {
+      $stateIsValid = true;
+    }
   }      
   if (empty($_POST["postcode"])) {
     $postcodeErr = "Postcode is invalid";
@@ -93,7 +98,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["payment"]) || $_POST["payment"] == "") {
     $paymentErr = "Please select a payment method";
   } else {
-    $paymentIsValid = true;
+    $payment = test_input($_POST["payment"]);
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$payment)) {
+      $paymentErr = "Only letters and white space allowed";
+    } else {
+      $paymentIsValid = true;
+    }
   }
   if ($firstnameIsValid && $surnameIsValid && $emailIsValid && $phoneIsValid && $addressIsValid && $stateIsValid && $postcodeIsValid && $countryIsValid && $paymentIsValid) {
     $filename = 'assets/cars.json';

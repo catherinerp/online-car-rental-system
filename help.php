@@ -1,6 +1,6 @@
 <?php include 'includes/header.php'; ?>
 <div class="main-container">
-    <div class="cart-container">
+    <div class="cart-container" style="padding:40px;">
         </br>
         <h1 style="text-align:center">Welcome to Hertz-UTS!</h1>
         <h3 style="text-align:center">About</h3>
