@@ -82,7 +82,7 @@ session_start();
                         <a href="viewCart.php" style="
                         border: 0px;
                         border-radius: 8px;
-                        background-color: #ffd100;
+                        background-color: #D3D3D3;
                         color: black;
                         " class="btn btn-primary btn-block">Cart</a>
                         </div>

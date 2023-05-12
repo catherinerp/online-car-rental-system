@@ -47,7 +47,7 @@
                 <?php
                 if ($car_availability == false) {
                     ?>
-                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="background-color:grey;" onclick="unavailableAlert()">
+                    <button class="add-cart-btn" type='submit" id='btn' name="addToCart" style="width:100%; background-color:grey;" onclick="unavailableAlert()">
                     <i class="fa fa-question-circle-o"></i> Unavailable</button>
                 <?php
                 } else {

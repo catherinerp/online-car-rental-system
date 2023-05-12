@@ -9,12 +9,12 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
 
-$fullnameErr = $emailErr = $addressErr = $stateErr = $countryErr = "";
-$nameIsValid = $emailIsValid = $addressIsValid = $stateIsValid = $countryIsValid = false;
-$fullname = $email = $address = $state = $country = "";
+$fullnameErr = $emailErr = $addressErr = $stateErr = $postcodeErr = $countryErr = "";
+$nameIsValid = $emailIsValid = $addressIsValid = $stateIsValid = $postcodeIsValid = $countryIsValid = false;
+$fullname = $email = $address = $state = $postcode = $country = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["fullname"])) {
-        $fullnameErr = "Full name is required";
+        $fullnameErr = "Full name is invalid";
       } else {
         $fullname = test_input($_POST["fullname"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/",$fullname)) {
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
 
     if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
+    $emailErr = "Email is invalid";
     } else {
         $email = test_input($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["address"])) {
-        $addressErr = "Address is required";
+        $addressErr = "Address is invalid";
       } else {
         $address = test_input($_POST["address"]);
         $addressIsValid = true;
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 
       if (empty($_POST["state"])) {
-        $stateErr = "State is required";
+        $stateErr = "State is invalid";
       } else {
         $state = test_input($_POST["state"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/",$state)) {
@@ -53,8 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stateIsValid = true;
         }
       }
+      if (empty($_POST["postcode"])) {
+        $postcodeErr = "Postcode is invalid";
+      } else {
+        $postcode = test_input($_POST["postcode"]);
+        if (!preg_match("/^\d{1,6}$/", $postcode)) {
+          $postcodeErr = "Only numbers and up to 6 digits allowed";
+        } else {
+            $postcodeIsValid = true;
+        }
+      }
       if (empty($_POST["country"])) {
-        $countryErr = "Country is required";
+        $countryErr = "Country is invalid";
       } else {
         $country = test_input($_POST["country"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/",$country)) {
@@ -63,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $countryIsValid = true;
         }
       }
-      if ($nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $countryIsValid) {
+      if ($nameIsValid && $emailIsValid && $addressIsValid && $stateIsValid && $postcodeIsValid && $countryIsValid) {
         $filename = 'assets/cars.json';
         $data = file_get_contents($filename);
         $decoded_json = json_decode($data, true);
@@ -149,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $total_quantity = 0;
             echo "<div class='cart-view-container'>";
             echo "<h1 style='text-align:center'>Shopping Cart</h1>";
-            echo "<table>";
+            echo "<table style='width:100%'>";
             foreach ($_SESSION['cart'] as $car_id => $car_data) {
                 $car_name = $car_data['car_name'];
                 $car_year = $car_data['car_year'];
@@ -157,10 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $car_price = $car_data['car_price'];
                 $quantity = $car_data['quantity'];
                 echo "<tr>";
-                echo "<td><img src='assets/images/car_images/$car_image' style='height:100px'></td>";
-                echo "<td>$car_name ($car_year)</td>";
-                echo "<td>$$car_price/day</td>";
-                echo "<td>$quantity";
+                echo "<td><img src='assets/images/car_images/$car_image' class='cart-car-image'></td>";
+                echo "<td style='font-size: 20px;'>$car_name ($car_year)</td>";
+                echo "<td><b>$$car_price/day</b></br>";
+                echo "for $quantity";
                 if ($quantity > 1) {
                     echo " days";
                 } else {
@@ -174,19 +184,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $total_price = number_format((float)$total_price, 2, '.', '');
             ?>
             </table>
-        <h2>Shipping Details</h2>
-        <sub><span class="required">*</span> Required field</sub>
+          <hr>
+        <h2 style="text-align:center">Shipping Details</h2>
+        <sub style="float:right;"><span class="required">*</span> Required field</sub>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="fullname">Full Name <span class="required">*</span></label></br>
-            <input type="text" id="fullname" name="fullname" placeholder="E.g. Jane Doe">
+            <input type="text" id="fullname" name="fullname" placeholder="Full Name">
             <span class="required"><?php echo $fullnameErr;?></span>
             </br>
             <label for="email">Email Address<span class="required">*</span></label></br>
-            <input type="text" id="email" name="email" placeholder="E.g. jane@email.com">
+            <input type="text" id="email" name="email" placeholder="Email Address">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
             <label for="address">Address <span class="required">*</span></label></br>
-            <input type="text" id="address" name="address" placeholder="E.g. 123 Place Street">
+            <input type="text" id="address" name="address" placeholder="Address">
             <span class="required"><?php echo $addressErr;?></span>
             </br>
             <label for="state">State <span class="required">*</span></label></br>
@@ -201,8 +212,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value="Western Australia">Western Australia</option>
               <option value="Victoria">Victoria</option>
             <span class="required"><?php echo $stateErr;?></span>
-            </br>
+          </select>
           </br>
+          <label for="postcode">Postcode <span class="required">*</span></label></br>
+            <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+            <span class="required"><?php echo $postcodeErr;?></span>
+            </br>
             <label for="country">Country <span class="required">*</span></label></br>
             <input type="text" id="country" name="country" placeholder="Country">
             <span class="required"><?php echo $stateErr;?></span>    

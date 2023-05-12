@@ -63,7 +63,7 @@ foreach ($cars as $car) {
                         <button class='add-cart-btn' type='submit' id='btn' name='addToCart' onclick='addedAlert()'><i class='fa fa-cart-arrow-down'></i> Rent</button>'
                         ";
                     } else {
-                        echo "<h2 style='color:red'>Unavailable to rent</h2>";
+                        echo "<h2 style='text-align:center; color:red;'>Unavailable to rent</h2>";
                     }
                     ?>
                     </form>

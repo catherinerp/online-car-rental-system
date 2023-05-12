@@ -14,11 +14,6 @@ if (!isset($_SESSION['cart'])) {
 include 'removeCartItem.php';
 include 'emptyCart.php';
 
-if (isset($_GET['goHome'])) {
-    header("Location: index.php");
-    exit();
-}
-
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);
@@ -40,7 +35,7 @@ $decoded_json = json_decode($data, true);
             $total_quantity = 0;
             echo "<div class='cart-view-container'>";
             echo "<h1 style='text-align:center'>Shopping Cart</h1>";
-            echo "<table>";
+            echo "<table style='width: 100%;'>";
             foreach ($_SESSION['cart'] as $car_id => $car_data) {
                 $car_name = $car_data['car_name'];
                 $car_year = $car_data['car_year'];
@@ -49,10 +44,10 @@ $decoded_json = json_decode($data, true);
                 $car_availability = $car_data['car_availability'];
                 $quantity = $car_data['quantity'];
                 echo "<tr>";
-                echo "<td><img src='assets/images/car_images/$car_image' style='height:100px'></td>";
-                echo "<td>$car_name ($car_year)</td>";
-                echo "<td>$$car_price/day</td>";
-                echo "<td>$quantity";
+                echo "<td><img src='assets/images/car_images/$car_image' class='cart-car-image'></td>";
+                echo "<td style='font-size: 20px;'>$car_name ($car_year)</td>";
+                echo "<td><b>$$car_price/day</b></br>";
+                echo "for $quantity";
                 if ($quantity > 1) {
                     echo " days";
                 } else {
@@ -72,18 +67,14 @@ $decoded_json = json_decode($data, true);
             $total_price = number_format((float)$total_price, 2, '.', '');
             ?>
             </table>
-            </br>
             <hr>
             <h3>Total</h3>
-            <p><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
+            <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
             $<?php echo $total_price;?>/day</p>
             <form method="get">
                     <button class="add-cart-btn" type="submit" onclick="return confirmEmpty()" name="emptyCart" <?php echo empty($_SESSION['cart']) ? 'style="display:none"' : ''; ?>>Empty Cart</button>
             </form>
-            <form method="get">
-                <button style="float:right" class="add-cart-btn" type="submit" name="goHome">Go Home</button>
-            </form>
-                <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:white">Checkout</a>
+                <a class="add-cart-btn" type="button" href="checkout.php" style="float:right; text-decoration:none; color:black; background-color:#ffd100;">Checkout</a>
             </div>
         <?php    
         }

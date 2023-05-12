@@ -25,6 +25,31 @@
     font-size: 45px;
 }
 
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    text-decoration: none;
+  }
+
+  .topnav a .account-button {
+    float: right;
+  }
+
 /** BrowseCars CSS **/
 
 .column-left {
@@ -137,6 +162,12 @@ a .hide-link {
     background-color: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+}
+
+.cart-car-image {
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .required { color: red; }
