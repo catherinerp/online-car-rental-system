@@ -14,6 +14,11 @@ if (!isset($_SESSION['cart'])) {
 include 'removeCartItem.php';
 include 'emptyCart.php';
 
+if (isset($_GET['goHome'])) {
+    header("Location: ./index.php");
+    exit();
+}
+
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);
@@ -21,10 +26,10 @@ $decoded_json = json_decode($data, true);
 ?>
 <div class="main-container">
 
-    <div class="cart-container">
+    <div class="cart-container" style="padding: 40px; padding-bottom: 80px">
         <?php
         if (empty($_SESSION['cart'])) {
-            echo "<h2>Your cart is empty.</h2>";
+            echo "<h2 style='text-align:center'>Your cart is empty.</h2>";
                 echo "<form method='get'>";
                 echo "<button style='float:right' class='add-cart-btn' type='submit' name='goHome'>Go Home</button>";
                 echo "</form>";

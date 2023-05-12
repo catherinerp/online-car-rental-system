@@ -41,18 +41,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address = test_input($_POST["address"]);
         $addressIsValid = true;
         }
-      
-
-      if (empty($_POST["state"])) {
-        $stateErr = "State is invalid";
+      if (empty($_POST["state"]) || $_POST["state"] == "") {
+          $stateErr = "Please select a state";
       } else {
-        $state = test_input($_POST["state"]);
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$state)) {
-          $stateErr = "Only letters and white space allowed";
-        } else {
-            $stateIsValid = true;
-        }
-      }
+          $state = test_input($_POST["state"]);
+          if (!preg_match("/^[a-zA-Z-' ]*$/", $state)) {
+              $stateErr = "Only letters and white space allowed";
+          } else {
+              $stateIsValid = true;
+          }
+      }      
       if (empty($_POST["postcode"])) {
         $postcodeErr = "Postcode is invalid";
       } else {
@@ -186,22 +184,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
           <hr>
         <h2 style="text-align:center">Shipping Details</h2>
-        <sub style="float:right;"><span class="required">*</span> Required field</sub>
+        <p style="float:right;"><span class="required">*</span> Required field</p>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label for="fullname">Full Name <span class="required">*</span></label></br>
-            <input type="text" id="fullname" name="fullname" placeholder="Full Name">
+            <input type="text" id="fullname" name="fullname" style="width:202.5px" placeholder="Full Name">
             <span class="required"><?php echo $fullnameErr;?></span>
             </br>
             <label for="email">Email Address<span class="required">*</span></label></br>
-            <input type="text" id="email" name="email" placeholder="Email Address">
+            <input type="text" id="email" name="email" style="width:202.5px" placeholder="Email Address">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
             <label for="address">Address <span class="required">*</span></label></br>
-            <input type="text" id="address" name="address" placeholder="Address">
+            <input type="text" id="address" name="address" style="width:202.5px" placeholder="Address">
             <span class="required"><?php echo $addressErr;?></span>
             </br>
             <label for="state">State <span class="required">*</span></label></br>
-            <select name="state" id="state">
+            <select name="state" id="state" style="height:30px">
               <option value="" disabled selected>Select State</option>
               <option value="New South Wales">New South Wales</option>
               <option value="South Australia">South Australia</option>
@@ -211,21 +209,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option value="Australian Capital Territory">Australian Capital Territory</option>
               <option value="Western Australia">Western Australia</option>
               <option value="Victoria">Victoria</option>
-            <span class="required"><?php echo $stateErr;?></span>
           </select>
+          <span class="required"><?php echo $stateErr;?></span>
           </br>
           <label for="postcode">Postcode <span class="required">*</span></label></br>
-            <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+            <input type="text" id="postcode" name="postcode" style="width:202.5px" placeholder="Postcode">
             <span class="required"><?php echo $postcodeErr;?></span>
             </br>
             <label for="country">Country <span class="required">*</span></label></br>
-            <input type="text" id="country" name="country" placeholder="Country">
-            <span class="required"><?php echo $stateErr;?></span>    
+            <input type="text" id="country" name="country" style="width:202.5px" placeholder="Country">
+            <span class="required"><?php echo $countryErr;?></span>    
           </br>
             <hr>
               <h3>Total</h3>
               <input style="float:right" class="add-cart-btn" type="submit" name="submit" value="Place Order"></input>
-              <p><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
+              <p style="font-size:20px"><?php echo $total_quantity;?> <i class="fa fa-car" aria-hidden="true"></i></br>
               $<?php echo $total_price;?>/day</p>
               
         </form>

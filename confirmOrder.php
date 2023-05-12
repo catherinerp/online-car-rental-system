@@ -13,15 +13,15 @@ if (!isset($_SESSION['cart'])) {
 include 'emptyCart.php';
 
 if (isset($_GET['goHome'])) {
-    header("Location: ../index.php");
+    header("Location: ./index.php");
     exit();
 }
 
 if (empty($_SESSION['cart'])) {
     ?>
     <div class="main-container">
-        <div class="cart-container">
-            <p>Cart is empty.</p>
+        <div class="cart-container" style="padding: 40px; padding-bottom: 80px">
+            <h2 style="text-align:center">Your cart is empty.</h2>
             <form method="get">
                 <button style='float:right' class='add-cart-btn' type='submit' name='emptyCart'>Go Home</button>
             </form>
@@ -33,12 +33,12 @@ if (empty($_SESSION['cart'])) {
     $total_quantity = 0;
     ?>
     <div class="main-container">
-        <div class="cart-container">
+        <div class="cart-container" style="padding: 40px; padding-bottom: 80px">
         <h1>Your order has been confirmed!</h1>
             <h3>Thank you for renting from Hertz-UTS <i class="fa fa-car"></i></h3></br>
             <p class="confirmation-order-message">
                 Your car should be available to be picked up within the hour, please wait for a
-                pick-up information email before picking it up.
+                pick-up confirmation email before picking it up.
             </p></br>
             <h2>Order Details</h2></br>
         <?php
