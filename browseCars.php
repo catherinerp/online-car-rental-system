@@ -101,7 +101,4 @@ $decoded_json = json_decode($data, true);
     function unavailableAlert() {
         alert("Sorry, this car is not available now.\nPlease try other cars.");
     }
-    function addedAlert() {
-        alert("<?php echo $car_name . " (" . $car_year . ")";?> added to cart.");
-    }
 </script>

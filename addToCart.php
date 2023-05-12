@@ -9,7 +9,7 @@ foreach ($cars as $car) {
     if ($car['Car_ID'] === $car_id) {
         $selected_car = $car;
         if (!$selected_car) {
-            echo "Car does not exist in database.";
+            echo "Car does not exist in the database.";
         }
         break;
     }
@@ -28,14 +28,15 @@ if(isset($_POST['quantity'])) {
 }
 
 if (isset($_SESSION['cart'][$car_id])) {
-    if ($_SESSION['cart'][$car_id]['quantity'] >= 10) {
+    if ($_SESSION['cart'][$car_id]['quantity'] + $quantity > 10) {
         echo "<script type='text/javascript'>
         alert('Cars are not available to rent for more than 10 days.');
+        window.location.href = '{$_SERVER['HTTP_REFERER']}';
         </script>";
-        exit;
     } else {
         echo "<script type='text/javascript'>
         alert('Car added to cart.');
+        window.location.href = '{$_SERVER['HTTP_REFERER']}';
         </script>";
         $_SESSION['cart'][$car_id]['quantity'] += $quantity;
     }
@@ -43,8 +44,8 @@ if (isset($_SESSION['cart'][$car_id])) {
     if ($quantity > 10) {
         echo "<script type='text/javascript'>
         alert('Cars are not available to rent for more than 10 days.');
+        window.location.href = '{$_SERVER['HTTP_REFERER']}';
         </script>";
-        exit;
     } else {
         $cart_item = [
             'car_id' => $car_id,
@@ -57,11 +58,9 @@ if (isset($_SESSION['cart'][$car_id])) {
         ];
         echo "<script type='text/javascript'>
         alert('Car added to cart.');
+        window.location.href = '{$_SERVER['HTTP_REFERER']}';
         </script>";
         $_SESSION['cart'][$car_id] = $cart_item;
     }
 }
-
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-exit;
 ?>

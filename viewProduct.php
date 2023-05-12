@@ -35,6 +35,8 @@ foreach ($cars as $car) {
             </form>
             <div class="car-view" style="
             margin: 0 auto;
+            margin-top: 40px;
+            margin-bottom: 40px;
             padding: 50px;
             width: 50%;
             ">
@@ -53,6 +55,7 @@ foreach ($cars as $car) {
                 <b>Seats:</b> <?php echo $car_seats;?></br>
                 </p>
                 <form action="addToCart.php" method="post">
+                    <input type="hidden" name="car_name" value="<?php echo $car_name;?>">
                     <input type="hidden" name="car_id" value="<?php echo $car_id;?>">
                     <?php
                     if ($car_availability== true) {
@@ -72,9 +75,4 @@ foreach ($cars as $car) {
     }
 }
 ?>
-<script>
-    function addedAlert() {
-        alert("<?php echo $car_name . " (" . $car_year . ")";?> added to cart.");
-    }
-</script>
 <?php include 'includes/footer.php'?>
