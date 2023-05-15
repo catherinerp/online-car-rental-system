@@ -40,7 +40,7 @@ if(isset($_POST['viewAccount'])) {
             }
             echo "<td>" . $row['rent_date'] . "<br></td>";
             echo "<td>" . $row['rent_days'] . "<br></td>";
-            echo "<td>" . $row['bond_amount'] . "<br></td>";
+            echo "<td>$" . $row['bond_amount'] . "<br></td>";
             echo "<td>
             <form action='removeBooking.php' method='post'>
                 <input type='hidden' name='updateAvailability' value='". $row['car_id'] ."'>
