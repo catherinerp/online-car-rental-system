@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php
 $data = file_get_contents('assets/cars.json');
 $cars = json_decode($data, true);
