@@ -1,6 +1,4 @@
 <?php session_start(); ?>
-<?php include 'includes/cartHeader.php';?>
-<div class="main-container">
 <?php
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
@@ -173,8 +171,9 @@ $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);
 
+include 'includes/cartHeader.php';
 ?>
-
+<div class="main-container">
     <div class="cart-container" style="padding: 40px; padding-bottom: 80px;">
         <?php
         if (empty($_SESSION['cart'])) {
