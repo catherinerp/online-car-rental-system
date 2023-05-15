@@ -1,15 +1,13 @@
 <?php session_start(); ?>
 <?php
-include 'includes/cartHeader.php';
-
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
-
 include 'removeCartItem.php';
 include 'emptyCart.php';
-
-
+?>
+<?php
+include 'includes/cartHeader.php';
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);

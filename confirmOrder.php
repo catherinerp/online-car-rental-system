@@ -1,16 +1,13 @@
 <?php
-include 'includes/cartHeader.php';
-
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = array();
-}
-
-include 'emptyCart.php';
-
 if (isset($_GET['goHome'])) {
     header("Location: ./index.php");
     exit();
 }
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+include 'emptyCart.php';
+include 'includes/cartHeader.php';
 
 if (empty($_SESSION['cart'])) {
     ?>

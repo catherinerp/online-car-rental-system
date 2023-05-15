@@ -1,13 +1,12 @@
 <?php
-include 'includes/header.php';
-
-echo "<div class='main-container'>";
-echo "<div class='cart-container' style='padding: 40px;'>";
-
 if (isset($_GET['goBack'])) {
     header('Location: accountForm.php');
     exit();
 }
+include 'includes/header.php';
+
+echo "<div class='main-container'>";
+echo "<div class='cart-container' style='padding: 40px;'>";
 
 if(isset($_POST['viewAccount'])) {
     include 'includes/dbConfig.php';
