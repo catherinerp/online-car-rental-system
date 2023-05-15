@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include 'includes/cartHeader.php';?>
 <div class="main-container">
 <?php
@@ -156,7 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $new_json = json_encode($decoded_json, JSON_PRETTY_PRINT);
     file_put_contents('assets/cars.json', $new_json);
-
     header("Location: confirmOrder.php?firstname=$firstname&surname=$surname&email=$email&phone=$phone&address=$address&city=$city&state=$state&postcode=$postcode&country=$country&payment=$payment");
     exit();
   }
@@ -175,15 +175,15 @@ $decoded_json = json_decode($data, true);
 
 ?>
 
-    <div class="cart-container">
+    <div class="cart-container" style="padding: 40px; padding-bottom: 80px;">
         <?php
         if (empty($_SESSION['cart'])) {
-            echo "<h2>Your cart is empty.</h2>";
-                echo "<form method='get'>";
-                echo "<button style='float:right' class='add-cart-btn' type='submit' name='goHome'>Go Home</button>";
-                echo "</form>";
-                echo "</div>";
+          echo "<h2 style='text-align:center'>Your cart is empty.</h2>";
+            echo "<form method='get'>";
+            echo "<button style='float:right' class='add-cart-btn' type='submit' name='goHome'>Go Home</button>";
+            echo "</form>";
             echo "</div>";
+        echo "</div>";
         } else {
             $total_price = 0;
             $total_quantity = 0;
