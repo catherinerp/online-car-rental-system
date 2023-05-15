@@ -1,7 +1,6 @@
+<?php session_start(); ?>
 <?php
-
 include 'includes/cartHeader.php';
-session_start();
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();

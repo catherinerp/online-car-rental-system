@@ -1,7 +1,5 @@
-<?php include 'includes/header.php'; ?>
-
-<?php
-session_start();
+<?php session_start(); ?>
+<?php include 'includes/header.php';
 
 if (isset($_GET['goBack'])) {
     header("Location: ./index.php");

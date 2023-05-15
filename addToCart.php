@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 $data = file_get_contents('assets/cars.json');
 $cars = json_decode($data, true);
@@ -14,8 +15,6 @@ foreach ($cars as $car) {
         break;
     }
 }
-
-session_start();
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
