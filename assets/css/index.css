@@ -16,21 +16,21 @@ body {
 }
 
 .header-logo {
-    margin: 20px;
-    height: 15vh;
-    float: left;
+  margin: 20px;
+  height: 15vh;
+  float: left;
 }
 
 .header-title {
-    color: white;
-    text-align: center;
-    font-family: 'Tajawal', sans-serif;
-    font-weight: 500;
-    font-size: 45px;
+  color: white;
+  text-align: center;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 500;
+  font-size: 45px;
 }
 
 .header-cart {
-    float: right;
+  float: right;
     padding: 5px;
     margin-right: 10px;
     text-decoration: none;
