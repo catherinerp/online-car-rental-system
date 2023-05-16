@@ -17,7 +17,6 @@
 </head>
 <div class="header">
     <a href="./index.php"><img class="header-logo" src="assets/images/logo-full.png"></a>
-    <div class="header-title">Car Rental Center</div>
     <div class="nav-item dropdown">
             <div class="dropdown">
                     <?php 
@@ -31,7 +30,7 @@
                         $cart = $_SESSION['cart'];
                         $count = count($cart);
                         ?>
-                        <button id="header-cart" class="header-cart" data-toggle="dropdown">
+                        <button id="header-cart" class="header-cart" data-toggle="dropdown" style="margin: 50px;">
                         <span style="font-size: 15px" class="badge badge-pill badge-danger"><?php echo $count?></span>
                         <i class="fa fa-shopping-cart"></i>
                         </button>

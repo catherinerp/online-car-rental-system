@@ -17,7 +17,7 @@
 </head>
 <div class="header">
     <a href="./index.php"><img class="header-logo" src="assets/images/logo-full.png"></a>
-    <div class="header-title">Car Rental Center</div>
+    <div class="header-title"></div>
     <div style="clear: both;"></div>
     <div class="topnav">
         <a href="./index.php">Home</a>
