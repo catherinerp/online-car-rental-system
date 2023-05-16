@@ -1,5 +1,11 @@
-<?php session_start(); ?>
-<?php
+<?php session_start();
+
+include 'includes/cartHeader.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
@@ -109,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = file_get_contents($filename);
     $decoded_json = json_decode($data, true);
     $cart_has_available_items = false;
+    echo "i am at all things are valid";
 
     foreach ($_SESSION['cart'] as $car_id => $car) {
     $car_availability = $car['car_availability'];
@@ -170,8 +177,6 @@ function test_input($data) {
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);
 $decoded_json = json_decode($data, true);
-
-include 'includes/cartHeader.php';
 ?>
 <div class="main-container">
     <div class="cart-container" style="padding: 40px; padding-bottom: 80px;">
@@ -225,11 +230,11 @@ include 'includes/cartHeader.php';
             <input type="text" id="surname" name="surname" style="height:30px; width:202.5px" placeholder="Surname">
             <span class="required"><?php echo $surnameErr;?></span>
             </br>
-            <label for="email">Email Address<span class="required">*</span></label></br>
+            <label for="email">Email Address <span class="required">*</span></label></br>
             <input type="text" id="email" name="email" style="height:30px; width:202.5px" placeholder="Email Address">
             <span class="required"><?php echo $emailErr;?></span>
             </br>
-            <label for="phone">Phone<span class="required">*</span></label></br>
+            <label for="phone">Phone <span class="required">*</span></label></br>
             <input type="tel" id="phone" name="phone" style="height:30px; width:202.5px" placeholder="Phone">
             <span class="required"><?php echo $phoneErr;?></span>
             </br>

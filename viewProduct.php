@@ -1,10 +1,11 @@
-<?php session_start(); ?>
-<?php
+<?php session_start(); 
+
 if (isset($_GET['goBack'])) {
     header("Location: ./index.php");
     exit();
-}?>
-<?php include 'includes/header.php';
+}
+
+include 'includes/header.php';
 
 $filename = 'assets/cars.json';
 $data = file_get_contents($filename);

@@ -1,15 +1,16 @@
 <?php
 include 'includes/header.php';
-?>
-<div class="main-container">
-    <div class="cart-container" style="padding:40px; padding-bottom:80px;">
-        </br>
-<?php
+
 if (isset($_GET['goBack'])) {
     header("Location: ./accountForm.php");
     exit();
 }
+?>
+<div class="main-container">
+    <div class="cart-container" style="padding:40px; padding-bottom:80px;">
+        </br>
 
+<?php
 function updateAvailability($car_id) {
     $filename = 'assets/cars.json';
     $data = file_get_contents($filename);

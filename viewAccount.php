@@ -3,6 +3,7 @@ if (isset($_GET['goBack'])) {
     header('Location: accountForm.php');
     exit();
 }
+
 include 'includes/header.php';
 
 echo "<div class='main-container'>";

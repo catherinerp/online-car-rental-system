@@ -1,6 +1,4 @@
-<?php
-include 'includes/header.php'; 
-?>
+<?php include 'includes/header.php'; ?>
 <div class="main-container">
     <div class="cart-container" style="padding:40px;">
         </br>

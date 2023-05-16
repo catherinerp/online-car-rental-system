@@ -1,8 +1,7 @@
-<?php session_start(); ?>
-<?php
+<?php session_start(); 
+
 $data = file_get_contents('assets/cars.json');
 $cars = json_decode($data, true);
-
 $car_id = $_POST['car_id'];
 $selected_car = null;
 
